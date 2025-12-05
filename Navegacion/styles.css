@@ -426,7 +426,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    color: white;
+    color: rgb(82, 255, 2);
     margin-bottom: var(--spacing-md);
 }
 
