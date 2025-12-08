@@ -9,11 +9,11 @@
 }
 
 :root {
-    --color-primary: #667eea;
-    --color-primary-dark: #5568d3;
-    --color-text: #2d3748;
-    --color-text-light: #718096;
-    --color-bg: #f7fafc;
+    --color-primary: #09ffad;
+    --color-primary-dark: #f70237;
+    --color-text: #a4fc00;
+    --color-text-light: #67ff02;
+    --color-bg: #8c00ff;
     --spacing: 1.5rem;
     --transition: all 0.3s ease;
 }
@@ -32,7 +32,7 @@ body {
 }
 
 code {
-    background: #e2e8f0;
+    background: #0168f0;
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.9em;
@@ -129,7 +129,7 @@ code {
         transparent 100%
     );
     
-    color: white;
+    color: rgb(247, 4, 4);
     padding: 1.5rem;
     transform: translateY(100%);
     transition: transform 0.3s ease;
