@@ -3,118 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery with CSS Grid | Auto-fit Responsive</title>
+    <title>Galería de Fotos</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>📸 Photo Gallery</h1>
-            <p class="subtitle">Responsive grid con <code>auto-fit</code> y <code>minmax()</code> - <strong>SIN media queries</strong></p>
+            <h1>📸 Galería de Fotos</h1>
+            <p class="subtitle">Grid responsivo con <code>auto-fit</code> y <code>minmax()</code></p>
         </header>
 
-        <!-- Gallery Grid -->
         <section class="gallery">
-            
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop" alt="Mountain landscape">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop" alt="Paisaje de montaña">
                 <div class="overlay">
-                    <h3>Mountain View</h3>
-                    <p>Landscape Photography</p>
+                    <h3>Vista de Montaña</h3>
+                    <p>Fotografía de Paisaje</p>
                 </div>
             </div>
 
             <div class="gallery-item featured">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=500&h=500&fit=crop" alt="Forest path">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=500&h=500&fit=crop" alt="Sendero en el bosque">
                 <div class="overlay">
-                    <h3>Forest Path</h3>
-                    <p>Nature Photography</p>
+                    <h3>Sendero del Bosque</h3>
+                    <p>Fotografía de Naturaleza</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=500&fit=crop" alt="Beach sunset">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=500&fit=crop" alt="Atardecer en la playa">
                 <div class="overlay">
-                    <h3>Beach Sunset</h3>
-                    <p>Seascape</p>
+                    <h3>Atardecer en la Playa</h3>
+                    <p>Paisaje Marino</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500&h=500&fit=crop" alt="Night sky">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500&h=500&fit=crop" alt="Cielo nocturno">
                 <div class="overlay">
-                    <h3>Starry Night</h3>
-                    <p>Astrophotography</p>
+                    <h3>Noche Estrellada</h3>
+                    <p>Astrofotografía</p>
+                </div>
+            </div>
+
+             <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=500&h=500&fit=crop" alt="Flores">
+                <div class="overlay">
+                    <h3>Flores de Primavera</h3>
+                    <p>Macro Fotografía</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=500&h=500&fit=crop" alt="Flowers">
+                <img src="https://images.unsplash.com/photo-1516617442324-41f12f84c905?w=500&h=500&fit=crop" alt="Luces de la ciudad">
                 <div class="overlay">
-                    <h3>Spring Flowers</h3>
-                    <p>Macro Photography</p>
+                    <h3>Luces de la Ciudad</h3>
+                    <p>Fotografía Urbana</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1516617442324-41f12f84c905?w=500&h=500&fit=crop" alt="City lights">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&h=500&fit=crop" alt="Bosque brumoso">
                 <div class="overlay">
-                    <h3>City Lights</h3>
-                    <p>Urban Photography</p>
+                    <h3>Bosque Brumoso</h3>
+                    <p>Atmosférico</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&h=500&fit=crop" alt="Misty forest">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=500&fit=crop" alt="Desierto">
                 <div class="overlay">
-                    <h3>Misty Forest</h3>
-                    <p>Atmospheric</p>
-                </div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=500&fit=crop" alt="Desert">
-                <div class="overlay">
-                    <h3>Desert Dunes</h3>
-                    <p>Adventure</p>
+                    <h3>Dunas del Desierto</h3>
+                    <p>Aventura</p>
                 </div>
             </div>
 
             <div class="gallery-item featured">
-                <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=500&h=500&fit=crop" alt="Waterfall">
+                <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=500&h=500&fit=crop" alt="Cascada">
                 <div class="overlay">
-                    <h3>Waterfall</h3>
-                    <p>Long Exposure</p>
+                    <h3>Cascada</h3>
+                    <p>Larga Exposición</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&h=500&fit=crop" alt="Snowy mountains">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&h=500&fit=crop" alt="Montañas nevadas">
                 <div class="overlay">
-                    <h3>Snowy Peaks</h3>
-                    <p>Winter Wonderland</p>
+                    <h3>Picos Nevados</h3>
+                    <p>Paraíso Invernal</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=500&h=500&fit=crop" alt="Tropical beach">
+                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=500&h=500&fit=crop" alt="Playa tropical">
                 <div class="overlay">
-                    <h3>Paradise Beach</h3>
-                    <p>Travel</p>
+                    <h3>Playa Paraíso</h3>
+                    <p>Viajes</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop" alt="River valley">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop" alt="Valle del río">
                 <div class="overlay">
-                    <h3>River Valley</h3>
-                    <p>Aerial View</p>
+                    <h3>Valle del Río</h3>
+                    <p>Vista Aérea</p>
                 </div>
             </div>
-
         </section>
 
-        <!-- Explicación del Grid -->
         <section class="explanation">
             <h2>🎯 Cómo Funciona Este Grid</h2>
             <div class="code-example">

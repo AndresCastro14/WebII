@@ -310,39 +310,4 @@ grid-template-columns podría ser: 1fr
    → Las columnas se ajustan automáticamente al ancho
 
 3. MINMAX():
-   minmax(250px, 1fr)
-   → Mínimo: 250px (no más pequeño)
-   → Máximo: 1fr (puede crecer para llenar espacio)
-
-4. GAP:
-   gap: 1.5rem;
-   → Espacio entre items
-   → Más limpio que usar margin
-
-5. GRID-COLUMN SPAN:
-   grid-column: span 2;
-   → El item ocupa 2 columnas
-   → Perfecto para items destacados
-
-6. ASPECT-RATIO:
-   aspect-ratio: 1 / 1;
-   → Mantiene proporción cuadrada
-   → Propiedad CSS moderna
-
-7. OBJECT-FIT:
-   object-fit: cover;
-   → La imagen cubre el área sin distorsión
-   → Como background-size: cover pero para <img>
-
-🎯 RESULTADO:
-   - Galería responsive SIN media queries (mayormente)
-   - Se adapta a cualquier pantalla automáticamente
-   - Items destacados ocupan más espacio
-   - Diseño limpio y moderno
-
-⚡ VENTAJAS DE ESTE ENFOQUE:
-   - Menos código
-   - Más mantenible
-   - Responsive intrínseco (no reactivo)
-   - Funciona en cualquier tamaño de pantalla
-*/
+   minmax(250px,
