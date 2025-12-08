@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solución: Dashboard Admin</title>
+    <title>Solución: Dashboard Admin Andres</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="dashboard">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h2>📊 AdminPro</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item active">
+                <a href="#" class="nav-item active" data-section="dashboard">
                     <span class="nav-icon">🏠</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="analytics">
                     <span class="nav-icon">📈</span>
                     <span>Analíticas</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="users">
                     <span class="nav-icon">👥</span>
                     <span>Usuarios</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="products">
                     <span class="nav-icon">📦</span>
                     <span>Productos</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="sales">
                     <span class="nav-icon">💰</span>
                     <span>Ventas</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="settings">
                     <span class="nav-icon">⚙️</span>
                     <span>Configuración</span>
                 </a>
@@ -43,15 +43,22 @@
 
         <!-- Header -->
         <header class="header">
-            <div class="header-search">
-                <input type="search" placeholder="Buscar...">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="header-search">
+                    <input type="search" id="searchInput" placeholder="Buscar...">
+                </div>
             </div>
             <div class="header-actions">
-                <button class="icon-btn">🔔<span class="badge">3</span></button>
-                <button class="icon-btn">✉️<span class="badge">5</span></button>
-                <div class="user-profile">
-                    <img src="https://i.pravatar.cc/40" alt="Usuario">
-                    <span>Admin User</span>
+                <button class="icon-btn" id="notificationBtn">
+                    🔔<span class="badge" id="notificationBadge">3</span>
+                </button>
+                <button class="icon-btn" id="messageBtn">
+                    ✉️<span class="badge" id="messageBadge">5</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <img src="images/mi perfil.jpeg" alt="Usuario">
+                    <span>Admin Andres</span>
                 </div>
             </div>
         </header>
@@ -59,8 +66,8 @@
         <!-- Main Content -->
         <main class="main-content">
             <div class="page-header">
-                <h1>Dashboard</h1>
-                <button class="btn-primary">+ Nuevo</button>
+                <h1 id="pageTitle">Dashboard</h1>
+                <button class="btn-primary" id="newBtn">+ Nuevo</button>
             </div>
 
             <!-- Stats Cards -->
@@ -189,5 +196,82 @@
             </div>
         </main>
     </div>
+
+    <!-- Modal de Notificaciones -->
+    <div class="modal" id="notificationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notificaciones</h3>
+                <button class="close-btn" id="closeNotification">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="notification-item">
+                    <span class="notification-icon">🔔</span>
+                    <div>
+                        <p><strong>Actualización del sistema</strong></p>
+                        <small>Hace 10 minutos</small>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <span class="notification-icon">⚠️</span>
+                    <div>
+                        <p><strong>Inventario bajo</strong></p>
+                        <small>Hace 1 hora</small>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <span class="notification-icon">✅</span>
+                    <div>
+                        <p><strong>Respaldo completado</strong></p>
+                        <small>Hace 3 horas</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Mensajes -->
+    <div class="modal" id="messageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Mensajes</h3>
+                <button class="close-btn" id="closeMessage">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="message-item">
+                    <img src="https://via.placeholder.com/40" alt="Usuario">
+                    <div>
+                        <p><strong>Juan Pérez</strong></p>
+                        <small>¿Cuándo estará listo el reporte?</small>
+                    </div>
+                </div>
+                <div class="message-item">
+                    <img src="https://via.placeholder.com/40" alt="Usuario">
+                    <div>
+                        <p><strong>María García</strong></p>
+                        <small>Necesito revisar los datos</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Nuevo -->
+    <div class="modal" id="newModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Crear Nuevo</h3>
+                <button class="close-btn" id="closeNew">×</button>
+            </div>
+            <div class="modal-body">
+                <button class="modal-option">📝 Nuevo Documento</button>
+                <button class="modal-option">👤 Nuevo Usuario</button>
+                <button class="modal-option">📦 Nuevo Producto</button>
+                <button class="modal-option">💰 Nueva Venta</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
