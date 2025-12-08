@@ -3,507 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hero Moderno - Diseño Web</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            position: relative;
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&h=1080&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* OVERLAY con nuevo color: Naranja a Rosa */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(251, 146, 60, 0.85) 0%,
-                rgba(236, 72, 153, 0.85) 100%
-            );
-            z-index: 1;
-        }
-
-        /* REDES SOCIALES */
-        .social-links {
-            position: absolute;
-            left: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .social-links a {
-            color: white;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(5px) scale(1.1);
-        }
-
-        /* Tooltip para redes sociales */
-        .social-links a::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            left: 60px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .social-links a:hover::after {
-            opacity: 1;
-        }
-
-        /* CONTENIDO HERO */
-        .hero-content {
-            z-index: 10;
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .hero-content h1 {
-            color: white;
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .hero-content p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 1s ease 0.4s backwards;
-        }
-
-        /* BOTONES HERO */
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease 0.6s backwards;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #f97316;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
-            background: #fff;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #ec4899;
-            transform: translateY(-3px);
-        }
-
-        /* ESTADÍSTICAS HERO */
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.8s backwards;
-        }
-
-        .stat {
-            text-align: center;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .stat:hover {
-            transform: scale(1.1);
-        }
-
-        .stat h3 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 0.3rem;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .stat p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            text-shadow: none;
-        }
-
-        /* SCROLL INDICATOR */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            cursor: pointer;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        .scroll-indicator span {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .scroll-arrow {
-            width: 30px;
-            height: 30px;
-            border: 2px solid white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* SECCIÓN DE CONTENIDO */
-        .content-section {
-            padding: 5rem 2rem;
-            background: linear-gradient(to bottom, #fff5f0 0%, #ffffff 100%);
-        }
-
-        .content-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .content-container h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(251, 146, 60, 0.1);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .feature:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
-            border-color: #f97316;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature h3 {
-            color: #333;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Modal para demos */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            position: relative;
-            background: white;
-            margin: 5% auto;
-            padding: 3rem;
-            width: 90%;
-            max-width: 600px;
-            border-radius: 20px;
-            text-align: center;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            color: #666;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close-modal:hover {
-            color: #f97316;
-        }
-
-        .modal h2 {
-            color: #f97316;
-            margin-bottom: 1rem;
-        }
-
-        .modal p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 250px;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            
-            .stat h3 {
-                font-size: 2rem;
-            }
-            
-            .social-links {
-                left: 1rem;
-                gap: 1rem;
-            }
-            
-            .social-links a {
-                width: 35px;
-                height: 35px;
-            }
-
-            .social-links a::after {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content {
-                padding: 1rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .hero-badge {
-                font-size: 0.75rem;
-                padding: 0.4rem 1rem;
-            }
-            
-            .social-links {
-                display: none;
-            }
-            
-            .content-section {
-                padding: 3rem 1rem;
-            }
-            
-            .content-container h2 {
-                font-size: 2rem;
-            }
-
-            .modal-content {
-                padding: 2rem;
-                margin: 20% auto;
-            }
-        }
-    </style>
+    <title>Solución: Hero con Overlay</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <section class="hero">
+        <!-- Overlay semitransparente -->
         <div class="hero-overlay"></div>
         
+        <!-- Redes sociales posicionadas -->
         <div class="social-links">
-            <a href="https://facebook.com" target="_blank" aria-label="Facebook" data-tooltip="Síguenos en Facebook">
+            <a href="#" aria-label="Facebook">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
             </a>
-            <a href="https://twitter.com" target="_blank" aria-label="Twitter" data-tooltip="Síguenos en Twitter">
+            <a href="#" aria-label="Twitter">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                 </svg>
             </a>
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram" data-tooltip="Síguenos en Instagram">
+            <a href="#" aria-label="Instagram">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
                 </svg>
             </a>
         </div>
         
+        <!-- Contenido centrado -->
         <div class="hero-content">
             <span class="hero-badge">Bienvenido</span>
             <h1>Diseño Web Moderno</h1>
             <p>Creamos experiencias digitales increíbles que cautivan y convierten</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="showStartModal()">Comenzar Ahora</button>
-                <button class="btn btn-secondary" onclick="showDemoModal()">Ver Demo</button>
+                <button class="btn btn-primary">Comenzar Ahora</button>
+                <button class="btn btn-secondary">Ver Demo</button>
             </div>
             <div class="hero-stats">
                 <div class="stat">
@@ -521,7 +55,8 @@
             </div>
         </div>
         
-        <div class="scroll-indicator" onclick="scrollToContent()">
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
             <span>Scroll</span>
             <div class="scroll-arrow">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -531,100 +66,28 @@
         </div>
     </section>
 
-    <section class="content-section" id="features">
+    <!-- Sección adicional para demostrar el scroll -->
+    <section class="content-section">
         <div class="content-container">
             <h2>Características Principales</h2>
             <div class="features-grid">
                 <div class="feature">
                     <div class="feature-icon">🎨</div>
                     <h3>Diseño Creativo</h3>
-                    <p>Interfaces únicas y atractivas que destacan tu marca con colores vibrantes y modernos.</p>
+                    <p>Interfaces únicas y atractivas que destacan tu marca.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">⚡</div>
                     <h3>Alto Rendimiento</h3>
-                    <p>Optimización para velocidad y eficiencia máximas en todos los dispositivos.</p>
+                    <p>Optimización para velocidad y eficiencia máximas.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">📱</div>
                     <h3>100% Responsive</h3>
-                    <p>Perfecta adaptación a todos los dispositivos, desde móviles hasta pantallas 4K.</p>
+                    <p>Perfecta adaptación a todos los dispositivos.</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Modal para Comenzar -->
-    <div id="startModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('startModal')">&times;</span>
-            <h2>🚀 ¡Comencemos tu Proyecto!</h2>
-            <p>Estamos emocionados de trabajar contigo. Nuestro equipo de expertos está listo para convertir tu visión en realidad.</p>
-            <p><strong>Próximos pasos:</strong></p>
-            <p>1. Cuéntanos sobre tu proyecto<br>
-            2. Recibe una propuesta personalizada<br>
-            3. Inicia tu transformación digital</p>
-            <button class="btn btn-primary" onclick="closeModal('startModal')" style="margin-top: 1rem;">Entendido</button>
-        </div>
-    </div>
-
-    <!-- Modal para Demo -->
-    <div id="demoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('demoModal')">&times;</span>
-            <h2>🎬 Demo Interactiva</h2>
-            <p>Descubre cómo nuestras soluciones pueden transformar tu negocio con experiencias digitales impactantes.</p>
-            <p><strong>Incluye:</strong></p>
-            <p>✨ Diseños modernos y responsivos<br>
-            🎯 Optimización para conversiones<br>
-            🔒 Seguridad de primer nivel<br>
-            📊 Analytics integrados</p>
-            <button class="btn btn-secondary" onclick="closeModal('demoModal')" style="margin-top: 1rem; color: #ec4899; border-color: #ec4899;">Ver más detalles</button>
-        </div>
-    </div>
-
-    <script>
-        function scrollToContent() {
-            document.getElementById('features').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        }
-
-        function showStartModal() {
-            document.getElementById('startModal').style.display = 'block';
-        }
-
-        function showDemoModal() {
-            document.getElementById('demoModal').style.display = 'block';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Cerrar modal al hacer clic fuera de él
-        window.onclick = function(event) {
-            const startModal = document.getElementById('startModal');
-            const demoModal = document.getElementById('demoModal');
-            if (event.target === startModal) {
-                startModal.style.display = 'none';
-            }
-            if (event.target === demoModal) {
-                demoModal.style.display = 'none';
-            }
-        }
-
-        // Animación de números en estadísticas
-        document.querySelectorAll('.stat').forEach(stat => {
-            stat.addEventListener('click', function() {
-                const h3 = this.querySelector('h3');
-                const originalText = h3.textContent;
-                h3.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    h3.style.transform = 'scale(1)';
-                }, 300);
-            });
-        });
-    </script>
 </body>
 </html>
