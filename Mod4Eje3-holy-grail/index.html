@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solución: Holy Grail Layout</title>
+    <title>News Portal</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,18 +16,17 @@
         <nav class="nav">
             <h3>Navegación</h3>
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Tecnología</a></li>
-                <li><a href="#">Deportes</a></li>
-                <li><a href="#">Cultura</a></li>
+                <li><a href="#" data-section="inicio">Inicio</a></li>
+                <li><a href="#" data-section="tecnologia">Tecnología</a></li>
+                <li><a href="#" data-section="deportes">Deportes</a></li>
+                <li><a href="#" data-section="cultura">Cultura</a></li>
             </ul>
         </nav>
         
         <main class="main">
-            <article>
-                <h2>Contenido Principal</h2>
-                <p>El Holy Grail Layout es un patrón clásico de diseño web que consiste en un header, footer, columna principal de contenido, navegación lateral y un sidebar de anuncios.</p>
-                <p>Con CSS Grid, este layout es extremadamente fácil de implementar usando grid-template-areas.</p>
+            <article id="main-content">
+                <h2>Bienvenido al Portal de Noticias</h2>
+                <p>Selecciona una sección de noticias en la navegación.</p>
             </article>
         </main>
         
@@ -47,5 +46,6 @@
             <p>&copy; 2024 News Portal. Todos los derechos reservados.</p>
         </footer>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
