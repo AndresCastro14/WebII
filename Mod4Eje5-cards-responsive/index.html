@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Interactiva Responsive Andres</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00ff15 0%, #6a00d4 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .card.hidden {
+            display: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .card-content h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #764ba2;
+            transform: rotate(90deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .cards-grid {
+                gap: 1.5rem;
+            }
+            
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .card-content {
+                padding: 1rem;
+            }
+            
+            .card-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-btn {
+                width: 100%;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+
+            .modal-content img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>Galería de Proyectos</h1>
+            <p>Explora nuestra colección de trabajos destacados</p>
+        </header>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="mobile">Móvil</button>
+            <button class="filter-btn" data-filter="design">Diseño</button>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card" data-category="web">
+                <img src="https://picsum.photos/400/300?random=1" alt="E-commerce">
+                <div class="card-content">
+                    <span class="card-tag">Web</span>
+                    <h3>E-commerce Platform</h3>
+                    <p>Plataforma de comercio electrónico con dashboard administrativo completo.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+
+            <div class="card" data-category="mobile">
+                <img src="https://picsum.photos/400/300?random=2" alt="App Fitness">
+                <div class="card-content">
+                    <span class="card-tag">Móvil</span>
+                    <h3>App Fitness Tracker</h3>
+                    <p>Aplicación móvil para seguimiento de entrenamientos y nutrición.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+
+            <div class="card" data-category="design">
+                <img src="https://picsum.photos/400/300?random=3" alt="Branding">
+                <div class="card-content">
+                    <span class="card-tag">Diseño</span>
+                    <h3>Corporate Branding</h3>
+                    <p>Identidad visual completa para empresa tecnológica.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+
+            <div class="card" data-category="web">
+                <img src="https://picsum.photos/400/300?random=4" alt="Dashboard">
+                <div class="card-content">
+                    <span class="card-tag">Web</span>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Panel de control de analíticas con visualización de datos en tiempo real.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+
+            <div class="card" data-category="mobile">
+                <img src="https://picsum.photos/400/300?random=5" alt="Social App">
+                <div class="card-content">
+                    <span class="card-tag">Móvil</span>
+                    <h3>Social Network App</h3>
+                    <p>Red social diseñada para conectar profesionales creativos.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+
+            <div class="card" data-category="design">
+                <img src="https://picsum.photos/400/300?random=6" alt="UI Kit">
+                <div class="card-content">
+                    <span class="card-tag">Diseño</span>
+                    <h3>Modern UI Kit</h3>
+                    <p>Sistema de diseño completo con componentes reutilizables.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+
+            <div class="card" data-category="web">
+                <img src="https://picsum.photos/400/300?random=7" alt="Portfolio">
+                <div class="card-content">
+                    <span class="card-tag">Web</span>
+                    <h3>Creative Portfolio</h3>
+                    <p>Portfolio interactivo para artista digital con galería dinámica.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+
+            <div class="card" data-category="mobile">
+                <img src="https://picsum.photos/400/300?random=8" alt="Banking App">
+                <div class="card-content">
+                    <span class="card-tag">Móvil</span>
+                    <h3>Banking App</h3>
+                    <p>Aplicación bancaria segura con gestión de cuentas y transacciones.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+
+            <div class="card" data-category="design">
+                <img src="https://picsum.photos/400/300?random=9" alt="Packaging">
+                <div class="card-content">
+                    <span class="card-tag">Diseño</span>
+                    <h3>Product Packaging</h3>
+                    <p>Diseño de empaque minimalista para línea de productos premium.</p>
+                    <button class="btn">Ver Proyecto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">&times;</button>
+            <img id="modalImage" src="" alt="Project">
+            <h2 id="modalTitle"></h2>
+            <span class="card-tag" id="modalTag"></span>
+            <p id="modalDescription"></p>
+            <p><strong>Tecnologías:</strong> <span id="modalTech"></span></p>
+            <p><strong>Cliente:</strong> <span id="modalClient"></span></p>
+            <p><strong>Año:</strong> <span id="modalYear"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Datos adicionales para el modal
+        const projectData = {
+            'E-commerce Platform': {
+                tech: 'React, Node.js, MongoDB, Stripe',
+                client: 'TechStore SA',
+                year: '2024'
+            },
+            'App Fitness Tracker': {
+                tech: 'React Native, Firebase, Redux',
+                client: 'FitLife Inc',
+                year: '2024'
+            },
+            'Corporate Branding': {
+                tech: 'Adobe Illustrator, Photoshop, Figma',
+                client: 'Innovatech',
+                year: '2023'
+            },
+            'Analytics Dashboard': {
+                tech: 'Vue.js, D3.js, Python, PostgreSQL',
+                client: 'DataCorp',
+                year: '2024'
+            },
+            'Social Network App': {
+                tech: 'Flutter, AWS, GraphQL',
+                client: 'Creative Hub',
+                year: '2023'
+            },
+            'Modern UI Kit': {
+                tech: 'Figma, Sketch, Design Tokens',
+                client: 'DesignStudio',
+                year: '2024'
+            },
+            'Creative Portfolio': {
+                tech: 'Next.js, Three.js, GSAP',
+                client: 'Artist Gallery',
+                year: '2024'
+            },
+            'Banking App': {
+                tech: 'Swift, Kotlin, Encryption APIs',
+                client: 'SecureBank',
+                year: '2023'
+            },
+            'Product Packaging': {
+                tech: 'Adobe Suite, 3D Rendering',
+                client: 'Premium Goods',
+                year: '2024'
+            }
+        };
+
+        // Filtrado de tarjetas
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remover clase active de todos los botones
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Agregar clase active al botón clickeado
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                cards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    
+                    if (filter === 'all' || category === filter) {
+                        card.classList.remove('hidden');
+                        // Re-trigger animation
+                        card.style.animation = 'none';
+                        setTimeout(() => {
+                            card.style.animation = 'fadeInUp 0.6s ease';
+                        }, 10);
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('projectModal');
+        const closeBtn = document.getElementById('closeModal');
+        const viewProjectButtons = document.querySelectorAll('.btn');
+
+        viewProjectButtons.forEach((button, index) => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const card = button.closest('.card');
+                const img = card.querySelector('img');
+                const title = card.querySelector('h3').textContent;
+                const tag = card.querySelector('.card-tag').textContent;
+                const description = card.querySelector('p').textContent;
+
+                // Llenar modal con datos
+                document.getElementById('modalImage').src = img.src;
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalTag').textContent = tag;
+                document.getElementById('modalDescription').textContent = description;
+                
+                // Agregar datos adicionales
+                const data = projectData[title];
+                if (data) {
+                    document.getElementById('modalTech').textContent = data.tech;
+                    document.getElementById('modalClient').textContent = data.client;
+                    document.getElementById('modalYear').textContent = data.year;
+                }
+
+                modal.classList.add('show');
+            });
+        });
+
+        // Cerrar modal
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        // Cerrar modal al hacer click fuera del contenido
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                modal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
