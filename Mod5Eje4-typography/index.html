@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4: Tipografía Fluid con Clamp</title>
+    <style>
+        /* =========================================
+           VARIABLES & SISTEMA TIPOGRÁFICO
+           ========================================= */
+        :root {
+            /* Paleta de colores moderna y vibrante */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-accent: #7c3aed;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-color: #a78bfa;
+            --accent-bright: #c084fc;
+            --highlight: #fbbf24;
+            
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-text: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+
+            /* SISTEMA FLUIDO CON CLAMP() */
+            --fs-body: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+            --fs-h1: clamp(2.5rem, 2rem + 6vw, 5rem);
+            --fs-h2: clamp(1.75rem, 1.4rem + 3vw, 3rem);
+            --fs-h3: clamp(1.4rem, 1.2rem + 2vw, 2.25rem);
+            --fs-h4: clamp(1.2rem, 1.1rem + 1.5vw, 1.75rem);
+
+            /* Line Heights */
+            --lh-tight: 1.1;
+            --lh-body: 1.7;
+            
+            /* Espaciado */
+            --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+            --space-sm: clamp(1rem, 0.8rem + 1vw, 2rem);
+            --space-md: clamp(2rem, 1.5rem + 2vw, 4rem);
+            --space-lg: clamp(3rem, 2rem + 4vw, 6rem);
+        }
+
+        /* =========================================
+           RESET BÁSICO
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-color);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            padding: var(--space-md);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Efecto de fondo animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* =========================================
+           ESTILOS DE ENCABEZADOS
+           ========================================= */
+        h1, h2, h3, h4 {
+            font-weight: 900;
+            line-height: var(--lh-tight);
+            margin-bottom: 0.8em;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: var(--fs-h1);
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            background-size: 200% auto;
+            position: relative;
+            text-shadow: 0 0 40px rgba(167, 139, 250, 0.3);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        h2 {
+            font-size: var(--fs-h2);
+            margin-top: 2em;
+            color: var(--accent-bright);
+            position: relative;
+            padding-left: var(--space-sm);
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background: var(--gradient-accent);
+            border-radius: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scaleY(1); }
+            50% { opacity: 0.7; transform: scaleY(0.95); }
+        }
+
+        h3 {
+            font-size: var(--fs-h3);
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: var(--fs-h4);
+            color: var(--highlight);
+            font-weight: 600;
+        }
+
+        /* =========================================
+           ELEMENTOS DE TEXTO
+           ========================================= */
+        p {
+            margin-bottom: 1.5em;
+            max-width: 70ch;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        p:hover {
+            transform: translateX(4px);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--text-muted);
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        strong {
+            color: var(--accent-bright);
+            font-weight: 700;
+            position: relative;
+        }
+
+        strong::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        strong:hover::after {
+            transform: scaleX(1);
+        }
+
+        blockquote {
+            border-left: none;
+            padding: var(--space-sm);
+            font-style: italic;
+            font-size: 1.2em;
+            margin: var(--space-md) 0;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        blockquote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 6rem;
+            color: var(--accent-color);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        blockquote::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+        }
+
+        code {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--accent-bright);
+            padding: 0.3em 0.6em;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            font-weight: 600;
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            margin: var(--space-lg) 0;
+            border-radius: 10px;
+        }
+
+        /* =========================================
+           LAYOUT
+           ========================================= */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: var(--space-lg) 0;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 10px;
+        }
+
+        article {
+            background: rgba(30, 41, 59, 0.5);
+            padding: var(--space-md);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 80px rgba(124, 58, 237, 0.3);
+        }
+
+        /* =========================================
+           ANIMACIONES Y EFECTOS RESPONSIVE
+           ========================================= */
+        @media (max-width: 768px) {
+            body {
+                padding: var(--space-sm);
+            }
+
+            article {
+                padding: var(--space-sm);
+            }
+
+            h1 {
+                letter-spacing: -0.01em;
+            }
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header, article {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        article {
+            animation-delay: 0.2s;
+        }
+
+        /* Efecto de selección de texto */
+        ::selection {
+            background: var(--accent-color);
+            color: var(--bg-primary);
+        }
+
+        ::-moz-selection {
+            background: var(--accent-color);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <header>
+            <h1>Tipografía Responsive Moderna</h1>
+            <p class="subtitle">Un sistema fluido usando CSS Clamp y Custom Properties.</p>
+        </header>
+
+        <hr>
+
+        <article>
+            <h2>Introducción a la Fluidez</h2>
+            <p>
+                Este párrafo demuestra el <strong>cuerpo de texto fluido</strong>. 
+                Si redimensionas la ventana del navegador, notarás que el tamaño de la fuente 
+                no salta de un tamaño a otro (como pasaría con media queries tradicionales), 
+                sino que escala matemáticamente gracias a la función <code>clamp()</code>.
+            </p>
+
+            <h3>Subtítulo de Nivel 3</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+
+            <blockquote>
+                "La tipografía en la web debe ser flexible, no rígida. El control pixel-perfect es una ilusión."
+            </blockquote>
+
+            <h4>Subtítulo de Nivel 4</h4>
+            <p>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+            </p>
+        </article>
+    </main>
+
+</body>
+</html>
