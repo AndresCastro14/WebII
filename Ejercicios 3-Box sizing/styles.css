@@ -22,7 +22,7 @@ h1 {
 
 .intro {
     text-align: center;
-    color: white;
+    color: rgb(250, 0, 0);
     font-size: 1.1rem;
     margin-bottom: 3rem;
 }
@@ -75,7 +75,7 @@ code {
 .box p {
     margin: 0.3rem 0;
     font-size: 0.9rem;
-    color: #34495e;
+    color: #0080ff;
 }
 
 .box .result {
@@ -88,7 +88,7 @@ code {
     background: #f8f9fa;
     padding: 1rem;
     border-radius: 8px;
-    border-left: 4px solid #3498db;
+    border-left: 4px solid #0099ff;
 }
 
 .calculation p {
@@ -200,7 +200,7 @@ code {
 .controls span {
     display: inline-block;
     min-width: 60px;
-    color: #3498db;
+    color: #023150;
 }
 
 .demo-boxes {
@@ -222,8 +222,8 @@ code {
 
 .demo-border-box {
     box-sizing: border-box;
-    border-color: #27ae60;
-    background-color: #e6ffe6;
+    border-color: #07c7e9;
+    background-color: #209b20;
 }
 
 .demo-box p {
