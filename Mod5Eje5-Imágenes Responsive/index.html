@@ -3,254 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería Responsive de Paisajes</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            padding: 0;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-
-        section {
-            margin-bottom: 4rem;
-            animation: fadeIn 0.8s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h2 {
-            color: #2a5298;
-            border-left: 6px solid #ff6b6b;
-            padding-left: 15px;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            background: linear-gradient(90deg, rgba(255,107,107,0.1) 0%, transparent 100%);
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .description {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #4ecdc4;
-        }
-
-        .responsive-img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .responsive-img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-        }
-
-        picture {
-            display: block;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        hr {
-            border: none;
-            height: 3px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
-            margin: 3rem 0;
-            border-radius: 10px;
-        }
-
-        .hero-background {
-            width: 100%;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-            background-size: cover;
-            background-position: center;
-            border-radius: 15px;
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-            background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop');
-        }
-
-        .hero-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(30,60,114,0.6), rgba(42,82,152,0.4));
-            z-index: 1;
-        }
-
-        .hero-background h3 {
-            position: relative;
-            z-index: 2;
-            font-size: 2.5rem;
-            padding: 2rem;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        @media (min-width: 600px) {
-            .hero-background {
-                height: 450px;
-                background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&h=500&fit=crop');
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-background {
-                height: 500px;
-                background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=600&fit=crop');
-            }
-        }
-
-        footer {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-        }
-
-        footer p {
-            font-size: 1.1rem;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .grid-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .image-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .image-card:hover {
-            transform: translateY(-5px);
-        }
-
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .hero-background {
-                border: 3px solid #4ecdc4;
-            }
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-            
-            h2 {
-                font-size: 1.4rem;
-            }
-            
-            .hero-background h3 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <title>Ejercicio 5: Imágenes Responsive</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <header>
-        <h1>🌄 Galería Responsive de Paisajes</h1>
-        <p>Redimensiona la ventana para ver cómo se adaptan las imágenes automáticamente</p>
+        <h1>Ejercicio 5: Imágenes Responsive</h1>
+        <p>Abre las herramientas de desarrollador (F12) y redimensiona la ventana para ver los cambios.</p>
     </header>
 
     <main class="container">
 
         <section>
-            <h2>1. 🖼️ Srcset y Sizes - Montañas Majestuosas</h2>
-            <div class="description">
-                <p><strong>Técnica:</strong> El navegador elige automáticamente la mejor resolución según el ancho de pantalla y densidad de píxeles.</p>
-            </div>
+            <h2>1. Srcset y Sizes (Misma imagen, distintos tamaños)</h2>
+            <p>El navegador elige la mejor imagen basándose en el ancho de pantalla y la densidad de píxeles (DPI).</p>
             
             <img 
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" 
+                src="https://placehold.co/400x300?text=Fallback+Img" 
                 srcset="
-                    https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop 400w,
-                    https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop 800w,
-                    https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=900&fit=crop 1200w
+                    https://placehold.co/400x300?text=Small+400w 400w,
+                    https://placehold.co/800x600?text=Medium+800w 800w,
+                    https://placehold.co/1200x900?text=Large+1200w 1200w
                 "
                 sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-                alt="Montañas nevadas al amanecer"
+                alt="Ejemplo de srcset"
                 loading="lazy"
                 class="responsive-img"
             >
@@ -259,23 +36,21 @@
         <hr>
 
         <section>
-            <h2>2. 🎨 Picture Element - Art Direction</h2>
-            <div class="description">
-                <p><strong>Técnica:</strong> Diferentes composiciones para móvil, tablet y escritorio. Optimizamos la narrativa visual.</p>
-            </div>
+            <h2>2. Elemento Picture (Art Direction)</h2>
+            <p>Usamos una imagen vertical para móviles y una horizontal panorámica para escritorio.</p>
             
             <picture>
                 <source 
                     media="(min-width: 1024px)" 
-                    srcset="https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=1400&h=500&fit=crop"
+                    srcset="https://placehold.co/1200x400/2ecc71/white?text=Desktop+Wide+(Art+Direction)"
                 >
                 <source 
                     media="(min-width: 768px)" 
-                    srcset="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&h=600&fit=crop"
+                    srcset="https://placehold.co/800x500/3498db/white?text=Tablet+(Art+Direction)"
                 >
                 <img 
-                    src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=500&fit=crop" 
-                    alt="Bosque natural con diferentes perspectivas"
+                    src="https://placehold.co/400x400/e74c3c/white?text=Mobile+Square" 
+                    alt="Ejemplo de art direction"
                     loading="lazy"
                     class="responsive-img"
                 >
@@ -285,72 +60,17 @@
         <hr>
 
         <section>
-            <h2>3. 🌅 Background Responsive - CSS Media Queries</h2>
-            <div class="description">
-                <p><strong>Técnica:</strong> La imagen de fondo cambia automáticamente según el dispositivo para optimizar la carga.</p>
-            </div>
+            <h2>3. Background Image Responsive (CSS)</h2>
+            <p>La imagen de fondo de este div cambia según media queries en CSS.</p>
             <div class="hero-background">
-                <h3>Paisajes que Inspiran</h3>
-            </div>
-        </section>
-
-        <hr>
-
-        <section>
-            <h2>4. 🌍 Galería Adaptativa - Grid Responsive</h2>
-            <div class="description">
-                <p><strong>Técnica:</strong> Layout en grid que se adapta: 1 columna (móvil), 2 columnas (tablet), 3 columnas (escritorio).</p>
-            </div>
-            
-            <div class="grid-container">
-                <div class="image-card">
-                    <img 
-                        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=350&fit=crop"
-                        srcset="
-                            https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=350&fit=crop 500w,
-                            https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=560&fit=crop 800w
-                        "
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt="Playa tropical al atardecer"
-                        loading="lazy"
-                        class="responsive-img"
-                    >
-                </div>
-                
-                <div class="image-card">
-                    <img 
-                        src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=500&h=350&fit=crop"
-                        srcset="
-                            https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=500&h=350&fit=crop 500w,
-                            https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&h=560&fit=crop 800w
-                        "
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt="Flores silvestres en campo abierto"
-                        loading="lazy"
-                        class="responsive-img"
-                    >
-                </div>
-                
-                <div class="image-card">
-                    <img 
-                        src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=500&h=350&fit=crop"
-                        srcset="
-                            https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=500&h=350&fit=crop 500w,
-                            https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&h=560&fit=crop 800w
-                        "
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt="Lago sereno con reflejo de montañas"
-                        loading="lazy"
-                        class="responsive-img"
-                    >
-                </div>
+                <h3>Contenido sobre el fondo</h3>
             </div>
         </section>
 
     </main>
 
     <footer>
-        <p>✨ Desarrollado con HTML5 y CSS3 Responsive | Optimizado para todos los dispositivos ✨</p>
+        <p>Fin del Ejercicio</p>
     </footer>
 
 </body>

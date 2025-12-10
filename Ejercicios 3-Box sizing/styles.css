@@ -15,14 +15,14 @@ body {
 
 h1 {
     text-align: center;
-    color: rgb(5, 247, 17);
+    color: white;
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
 .intro {
     text-align: center;
-    color: rgb(243, 1, 1);
+    color: white;
     font-size: 1.1rem;
     margin-bottom: 3rem;
 }
@@ -41,16 +41,16 @@ code {
 }
 
 .box-wrapper {
-    background: rgb(225, 250, 0);
+    background: white;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(240, 1, 1, 0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .box-wrapper h2 {
     margin: 0 0 1.5rem 0;
     font-size: 1.3rem;
-    color: #ff00aa;
+    color: #2c3e50;
 }
 
 /* LAS DOS CAJAS - MISMO CÓDIGO CSS */
