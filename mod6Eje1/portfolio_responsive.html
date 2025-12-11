@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Andres Castro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .min-vh-75 {
+            min-height: 75vh;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        footer a {
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        footer a:hover {
+            opacity: 0.7;
+            transform: translateY(-3px);
+            display: inline-block;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            margin-bottom: 50px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        .project-badge {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.65rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 991px) {
+            .hero-section {
+                text-align: center;
+            }
+
+            .profile-img {
+                width: 250px;
+                height: 250px;
+                margin-top: 2rem;
+            }
+
+            .navbar-collapse {
+                background-color: rgba(33, 37, 41, 0.95);
+                padding: 1rem;
+                border-radius: 10px;
+                margin-top: 1rem;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            h1.display-3 {
+                font-size: 2.5rem;
+            }
+
+            .btn-lg {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar con menú hamburguesa -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">
+                <i class="bi bi-code-slash"></i> Andres Castro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Sobre Mí</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white">
+        <div class="container">
+            <div class="row align-items-center min-vh-75">
+                <div class="col-lg-6 fade-in">
+                    <h1 class="display-3 fw-bold mb-3">Hola, soy Andres Castro</h1>
+                    <p class="lead mb-4">Desarrollador Full Stack apasionado por crear experiencias web increíbles</p>
+                    <div class="d-flex gap-3 flex-wrap justify-content-center justify-content-lg-start">
+                        <a href="#projects" class="btn btn-light btn-lg">
+                            <i class="bi bi-folder-fill me-2"></i>Ver Proyectos
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-envelope-fill me-2"></i>Contactar
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center fade-in">
+                    <!-- CAMBIA ESTA URL POR LA DE TU FOTO -->
+                    <img src="images/mi perfil.jpeg" alt="Jim Requena" class="profile-img rounded-circle shadow-lg">
+                    <!-- Para usar tu propia foto, reemplaza la URL anterior por:
+                         - Una URL de tu foto en línea, o
+                         - Una ruta local como: src="img/mi-foto.jpg" -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="text-center section-title">Sobre Mí</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <p class="lead text-center">
+                        Soy un desarrollador web con 5 años de experiencia creando aplicaciones modernas y escalables. 
+                        Me especializo en React, Node.js y diseño responsive. Apasionado por la tecnología y el aprendizaje continuo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Habilidades</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-palette skill-icon text-primary"></i>
+                            <h5 class="card-title">Diseño UI/UX</h5>
+                            <p class="card-text">Creación de interfaces intuitivas y atractivas centradas en la experiencia del usuario</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-code-square skill-icon text-success"></i>
+                            <h5 class="card-title">Desarrollo Frontend</h5>
+                            <p class="card-text">HTML5, CSS3, JavaScript, React, Vue.js y frameworks modernos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-server skill-icon text-danger"></i>
+                            <h5 class="card-title">Desarrollo Backend</h5>
+                            <p class="card-text">Node.js, Express, MongoDB, PostgreSQL y arquitecturas RESTful</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="text-center section-title">Mis Proyectos</h2>
+            <div class="row g-4">
+                <!-- Proyecto 1 - PUEDES EDITAR AQUÍ -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" class="card-img-top" alt="E-commerce Platform">
+                        <div class="card-body">
+                            <span class="badge bg-primary project-badge mb-2">Web App</span>
+                            <h5 class="card-title">E-commerce Platform</h5>
+                            <p class="card-text">Plataforma completa de comercio electrónico con React y Node.js, incluye carrito de compras y pasarela de pagos</p>
+                            <a href="#" class="btn btn-outline-primary" onclick="alert('Redirigiendo al proyecto...'); return false;">
+                                <i class="bi bi-arrow-right-circle me-2"></i>Ver Más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 - PUEDES EDITAR AQUÍ -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=250&fit=crop" class="card-img-top" alt="Task Manager App">
+                        <div class="card-body">
+                            <span class="badge bg-success project-badge mb-2">Mobile</span>
+                            <h5 class="card-title">Task Manager App</h5>
+                            <p class="card-text">Aplicación móvil para gestión de tareas con React Native, sincronización en tiempo real</p>
+                            <a href="#" class="btn btn-outline-primary" onclick="alert('Redirigiendo al proyecto...'); return false;">
+                                <i class="bi bi-arrow-right-circle me-2"></i>Ver Más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 - PUEDES EDITAR AQUÍ -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop" class="card-img-top" alt="Analytics Dashboard">
+                        <div class="card-body">
+                            <span class="badge bg-danger project-badge mb-2">Dashboard</span>
+                            <h5 class="card-title">Analytics Dashboard</h5>
+                            <p class="card-text">Panel de analíticas con visualización de datos en tiempo real usando Chart.js y D3.js</p>
+                            <a href="#" class="btn btn-outline-primary" onclick="alert('Redirigiendo al proyecto...'); return false;">
+                                <i class="bi bi-arrow-right-circle me-2"></i>Ver Más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGREGA MÁS PROYECTOS COPIANDO ESTA ESTRUCTURA -->
+                <!--
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow">
+                        <img src="URL_DE_TU_IMAGEN" class="card-img-top" alt="Nombre del Proyecto">
+                        <div class="card-body">
+                            <span class="badge bg-info project-badge mb-2">Tipo</span>
+                            <h5 class="card-title">Nombre del Proyecto</h5>
+                            <p class="card-text">Descripción de tu proyecto</p>
+                            <a href="URL_DEL_PROYECTO" class="btn btn-outline-primary" target="_blank">
+                                <i class="bi bi-arrow-right-circle me-2"></i>Ver Más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Contacto</h2>
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">
+                                    <i class="bi bi-person-fill me-2"></i>Nombre
+                                </label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    <i class="bi bi-envelope-fill me-2"></i>Email
+                                </label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">
+                                    <i class="bi bi-chat-left-text-fill me-2"></i>Mensaje
+                                </label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-send-fill me-2"></i>Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0">&copy; Diciembre 2025 Jim Requena (UPDS). Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="https://github.com/tuusuario" class="text-white me-3" title="GitHub" target="_blank">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/tuusuario" class="text-white me-3" title="LinkedIn" target="_blank">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/tuusuario" class="text-white" title="Twitter" target="_blank">
+                        <i class="bi bi-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Cerrar menú móvil al hacer clic en un enlace
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // Smooth scroll para todos los enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Manejo del formulario de contacto
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Aquí puedes agregar la lógica para enviar el email
+            // Por ahora solo mostramos un mensaje
+            alert(`¡Gracias por tu mensaje, ${name}! Te contactaremos pronto a ${email}`);
+            
+            // Limpiar el formulario
+            this.reset();
+        });
+
+        // Animación al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .section-title').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
