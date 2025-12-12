@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #008cff 0%, #678303 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -133,7 +133,7 @@ body {
 .btn-clear-history {
     width: 100%;
     padding: 0.8rem;
-    background: #ff6b6b;
+    background: #940a0a;
     color: white;
     border: none;
     border-radius: 8px;

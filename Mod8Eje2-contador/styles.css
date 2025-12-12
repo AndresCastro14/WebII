@@ -10,8 +10,8 @@
 
 :root {
     /* Colores */
-    --color-positive: #28a745;
-    --color-negative: #dc3545;
+    --color-positive: #ec0000;
+    --color-negative: #1900ff;
     --color-neutral: #2d3748;
     --color-bg-positive: #d4edda;
     --color-bg-negative: #f8d7da;
@@ -34,7 +34,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #29b916 0%, #520b99 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
