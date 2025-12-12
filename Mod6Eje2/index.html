@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Tailwind CSS</title>
+    <title>DashPro - Dashboard Interactivo</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
     <!-- Navbar -->
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4">
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <span class="text-2xl font-bold text-indigo-600">DashPro</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <button class="p-2 rounded-lg hover:bg-gray-100">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button class="p-2 rounded-lg hover:bg-gray-100 relative">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                         </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                     </button>
-                    <img src="https://i.pravatar.cc/40" alt="User" class="w-10 h-10 rounded-full">
+                    <img src="images/mi perfil.jpeg"alt="User" class="w-10 h-10 rounded-full border-2 border-gray-200">
                 </div>
             </div>
         </div>
@@ -28,148 +29,463 @@
 
     <div class="flex">
         <!-- Sidebar -->
-        <aside class="w-64 bg-white min-h-screen shadow-lg">
-            <nav class="mt-8">
-                <a href="#" class="flex items-center px-6 py-3 text-gray-700 bg-indigo-100 border-r-4 border-indigo-600">
+        <aside class="w-52 bg-white min-h-screen shadow-sm border-r border-gray-200">
+            <nav class="mt-6 px-3">
+                <button data-view="dashboard" class="nav-item w-full flex items-center px-4 py-3 mb-1 rounded-lg transition-all duration-200 bg-indigo-50 text-indigo-600 border-l-4 border-indigo-600">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                     </svg>
-                    <span class="ml-3 font-medium">Dashboard</span>
-                </a>
-                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100">
+                    <span class="ml-3 font-medium text-sm">Dashboard</span>
+                </button>
+                <button data-view="usuarios" class="nav-item w-full flex items-center px-4 py-3 mb-1 rounded-lg transition-all duration-200 text-gray-600 hover:bg-gray-50">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
-                    <span class="ml-3">Usuarios</span>
-                </a>
-                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100">
+                    <span class="ml-3 font-medium text-sm">Usuarios</span>
+                </button>
+                <button data-view="analiticas" class="nav-item w-full flex items-center px-4 py-3 mb-1 rounded-lg transition-all duration-200 text-gray-600 hover:bg-gray-50">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
-                    <span class="ml-3">Analíticas</span>
-                </a>
-                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100">
+                    <span class="ml-3 font-medium text-sm">Analíticas</span>
+                </button>
+                <button data-view="configuracion" class="nav-item w-full flex items-center px-4 py-3 mb-1 rounded-lg transition-all duration-200 text-gray-600 hover:bg-gray-50">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
-                    <span class="ml-3">Configuración</span>
-                </a>
+                    <span class="ml-3 font-medium text-sm">Configuración</span>
+                </button>
             </nav>
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-8">Dashboard</h1>
-
-            <!-- Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">Total Usuarios</p>
-                            <p class="text-3xl font-bold text-gray-800">2,543</p>
-                            <p class="text-green-500 text-sm mt-2">↑ 12.5%</p>
+        <main class="flex-1 p-8 bg-gray-50">
+            <!-- Dashboard View -->
+            <div id="dashboardView" class="view-content">
+                <h1 class="text-2xl font-bold text-gray-800 mb-8">Dashboard</h1>
+                
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-gray-500 text-xs font-medium mb-2">Total Usuarios</p>
+                                <p id="totalUsuarios" class="text-3xl font-bold text-gray-800">2,543</p>
+                                <p class="text-green-500 text-xs mt-2 font-semibold">↑ 12.5%</p>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="bg-blue-100 p-3 rounded-full">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-gray-500 text-xs font-medium mb-2">Ingresos</p>
+                                <p class="text-3xl font-bold text-gray-800">$45,678</p>
+                                <p class="text-green-500 text-xs mt-2 font-semibold">↑ 8.2%</p>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-gray-500 text-xs font-medium mb-2">Pedidos</p>
+                                <p id="totalPedidos" class="text-3xl font-bold text-gray-800">1,234</p>
+                                <p class="text-red-500 text-xs mt-2 font-semibold">↓ 3.1%</p>
+                            </div>
+                            <div class="bg-orange-100 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-gray-500 text-xs font-medium mb-2">Satisfacción</p>
+                                <p class="text-3xl font-bold text-gray-800">4.8</p>
+                                <p class="text-green-500 text-xs mt-2 font-semibold">↑ 0.3</p>
+                            </div>
+                            <div class="bg-purple-100 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">Ingresos</p>
-                            <p class="text-3xl font-bold text-gray-800">$45,678</p>
-                            <p class="text-green-500 text-sm mt-2">↑ 8.2%</p>
-                        </div>
-                        <div class="bg-green-100 p-3 rounded-full">
-                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
+                <!-- Recent Orders Table -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-lg font-bold text-gray-800">Pedidos Recientes</h2>
                     </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">Pedidos</p>
-                            <p class="text-3xl font-bold text-gray-800">1,234</p>
-                            <p class="text-red-500 text-sm mt-2">↓ 3.1%</p>
-                        </div>
-                        <div class="bg-orange-100 p-3 rounded-full">
-                            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">Satisfacción</p>
-                            <p class="text-3xl font-bold text-gray-800">4.8</p>
-                            <p class="text-green-500 text-sm mt-2">↑ 0.3</p>
-                        </div>
-                        <div class="bg-purple-100 p-3 rounded-full">
-                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
-                            </svg>
-                        </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cliente</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Producto</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Fecha</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Monto</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTable" class="divide-y divide-gray-200"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <!-- Recent Orders Table -->
-            <div class="bg-white rounded-lg shadow overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-200">
-                    <h2 class="text-xl font-semibold text-gray-800">Pedidos Recientes</h2>
+            <!-- Users View -->
+            <div id="usuariosView" class="view-content hidden">
+                <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+                    <h1 class="text-2xl font-bold text-gray-800">Gestión de Usuarios</h1>
+                    <button id="addUserBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg font-medium flex items-center gap-2 shadow-sm transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Nuevo Usuario
+                    </button>
                 </div>
-                <table class="w-full">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cliente</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Producto</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Fecha</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Monto</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 text-sm text-gray-900">#1234</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">Juan Pérez</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">Laptop Pro</td>
-                            <td class="px-6 py-4 text-sm text-gray-500">2024-01-15</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">$1,299</td>
-                            <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Completado</span></td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 text-sm text-gray-900">#1235</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">María García</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">Mouse Wireless</td>
-                            <td class="px-6 py-4 text-sm text-gray-500">2024-01-15</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">$49</td>
-                            <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">Pendiente</span></td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 text-sm text-gray-900">#1236</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">Carlos López</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">Teclado Mecánico</td>
-                            <td class="px-6 py-4 text-sm text-gray-500">2024-01-14</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">$129</td>
-                            <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full">Procesando</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="relative">
+                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            <input
+                                type="text"
+                                id="searchInput"
+                                placeholder="Buscar usuarios por nombre o email..."
+                                class="w-full pl-11 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rol</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estado</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTable" class="divide-y divide-gray-200"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics View -->
+            <div id="analiticasView" class="view-content hidden">
+                <h1 class="text-2xl font-bold text-gray-800 mb-8">Analíticas</h1>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+                    <svg class="w-16 h-16 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <p class="text-lg text-gray-600">Vista de analíticas en desarrollo</p>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="configuracionView" class="view-content hidden">
+                <h1 class="text-2xl font-bold text-gray-800 mb-8">Configuración</h1>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+                    <svg class="w-16 h-16 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <p class="text-lg text-gray-600">Panel de configuración en desarrollo</p>
+                </div>
             </div>
         </main>
     </div>
+
+    <!-- Modal -->
+    <div id="userModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <h2 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-6">Nuevo Usuario</h2>
+            <form id="userForm" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre</label>
+                    <input
+                        type="text"
+                        id="userName"
+                        required
+                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                        placeholder="Ej: Juan Pérez"
+                    />
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                    <input
+                        type="email"
+                        id="userEmail"
+                        required
+                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                        placeholder="correo@ejemplo.com"
+                    />
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Rol</label>
+                    <select
+                        id="userRole"
+                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                    >
+                        <option>Usuario</option>
+                        <option>Admin</option>
+                        <option>Moderador</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Estado</label>
+                    <select
+                        id="userStatus"
+                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                    >
+                        <option>Activo</option>
+                        <option>Inactivo</option>
+                    </select>
+                </div>
+                <div class="flex gap-3 mt-8">
+                    <button
+                        type="button"
+                        id="cancelBtn"
+                        class="flex-1 px-4 py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+                    >
+                        Cancelar
+                    </button>
+                    <button
+                        type="submit"
+                        class="flex-1 px-4 py-2.5 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all shadow-sm"
+                    >
+                        <span id="submitBtnText">Crear</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        let users = [
+            { id: 1, name: 'Juan Pérez', email: 'juan@email.com', role: 'Admin', status: 'Activo' },
+            { id: 2, name: 'María García', email: 'maria@email.com', role: 'Usuario', status: 'Activo' },
+            { id: 3, name: 'Carlos López', email: 'carlos@email.com', role: 'Usuario', status: 'Inactivo' }
+        ];
+
+        let orders = [
+            { id: '#1234', client: 'Juan Pérez', product: 'Laptop Pro', date: '2024-01-15', amount: '$1,299', status: 'Completado' },
+            { id: '#1235', client: 'María García', product: 'Mouse Wireless', date: '2024-01-15', amount: '$49', status: 'Pendiente' },
+            { id: '#1236', client: 'Carlos López', product: 'Teclado Mecánico', date: '2024-01-14', amount: '$129', status: 'Procesando' }
+        ];
+
+        let editingUserId = null;
+        let searchTerm = '';
+
+        // DOM Elements
+        const navItems = document.querySelectorAll('.nav-item');
+        const userModal = document.getElementById('userModal');
+        const addUserBtn = document.getElementById('addUserBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const userForm = document.getElementById('userForm');
+        const searchInput = document.getElementById('searchInput');
+
+        // Navigation
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const view = item.dataset.view;
+                
+                // Update active state
+                navItems.forEach(nav => {
+                    nav.classList.remove('bg-indigo-50', 'text-indigo-600', 'border-l-4', 'border-indigo-600');
+                    nav.classList.add('text-gray-600', 'hover:bg-gray-50');
+                });
+                
+                item.classList.add('bg-indigo-50', 'text-indigo-600', 'border-l-4', 'border-indigo-600');
+                item.classList.remove('text-gray-600', 'hover:bg-gray-50');
+                
+                // Show/hide views
+                document.querySelectorAll('.view-content').forEach(v => v.classList.add('hidden'));
+                document.getElementById(`${view}View`).classList.remove('hidden');
+            });
+        });
+
+        // Render functions
+        function getStatusColor(status) {
+            const colors = {
+                'Completado': 'bg-green-100 text-green-800',
+                'Pendiente': 'bg-yellow-100 text-yellow-800',
+                'Procesando': 'bg-blue-100 text-blue-800',
+                'Activo': 'bg-green-100 text-green-800',
+                'Inactivo': 'bg-gray-100 text-gray-800'
+            };
+            return colors[status] || 'bg-gray-100 text-gray-800';
+        }
+
+        function renderOrders() {
+            const tbody = document.getElementById('ordersTable');
+            tbody.innerHTML = orders.map(order => `
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">${order.id}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${order.client}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${order.product}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${order.date}</td>
+                    <td class="px-6 py-4 text-sm font-semibold text-gray-900">${order.amount}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(order.status)}">
+                            ${order.status}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Update total orders count
+            document.getElementById('totalPedidos').textContent = orders.length;
+        }
+
+        function renderUsers() {
+            const tbody = document.getElementById('usersTable');
+            const filteredUsers = users.filter(user =>
+                user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.email.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            tbody.innerHTML = filteredUsers.map(user => `
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">#${user.id}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${user.name}</td>
+                    <td class="px-6 py-4 text-sm text-gray-600">${user.email}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${user.role}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(user.status)}">
+                            ${user.status}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex gap-2">
+                            <button onclick="editUser(${user.id})" class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                </svg>
+                            </button>
+                            <button onclick="deleteUser(${user.id})" class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Update total users count
+            document.getElementById('totalUsuarios').textContent = users.length.toLocaleString();
+        }
+
+        // Modal functions
+        function openModal(editing = false, user = null) {
+            userModal.classList.remove('hidden');
+            editingUserId = user ? user.id : null;
+            
+            if (editing && user) {
+                document.getElementById('modalTitle').textContent = 'Editar Usuario';
+                document.getElementById('submitBtnText').textContent = 'Actualizar';
+                document.getElementById('userName').value = user.name;
+                document.getElementById('userEmail').value = user.email;
+                document.getElementById('userRole').value = user.role;
+                document.getElementById('userStatus').value = user.status;
+            } else {
+                document.getElementById('modalTitle').textContent = 'Nuevo Usuario';
+                document.getElementById('submitBtnText').textContent = 'Crear';
+                userForm.reset();
+            }
+        }
+
+        function closeModal() {
+            userModal.classList.add('hidden');
+            editingUserId = null;
+            userForm.reset();
+        }
+
+        // User CRUD operations
+        window.editUser = function(id) {
+            const user = users.find(u => u.id === id);
+            if (user) openModal(true, user);
+        };
+
+        window.deleteUser = function(id) {
+            if (confirm('¿Estás seguro de eliminar este usuario?')) {
+                users = users.filter(u => u.id !== id);
+                renderUsers();
+            }
+        };
+
+        // Event listeners
+        addUserBtn.addEventListener('click', () => openModal(false));
+        cancelBtn.addEventListener('click', closeModal);
+        
+        userModal.addEventListener('click', (e) => {
+            if (e.target === userModal) closeModal();
+        });
+
+        userForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('userName').value,
+                email: document.getElementById('userEmail').value,
+                role: document.getElementById('userRole').value,
+                status: document.getElementById('userStatus').value
+            };
+            
+            if (editingUserId) {
+                // Update existing user
+                const index = users.findIndex(u => u.id === editingUserId);
+                if (index !== -1) {
+                    users[index] = { ...users[index], ...formData };
+                }
+            } else {
+                // Create new user
+                const newUser = {
+                    id: Math.max(...users.map(u => u.id), 0) + 1,
+                    ...formData
+                };
+                users.push(newUser);
+            }
+            
+            renderUsers();
+            closeModal();
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchTerm = e.target.value;
+            renderUsers();
+        });
+
+        // Initial render
+        renderOrders();
+        renderUsers();
+    </script>
 </body>
 </html>
