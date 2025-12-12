@@ -4,69 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería Masonry Real</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0602ec 0%, #ec009e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-auto-rows: 10px;
+            grid-auto-flow: dense;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            grid-row: span 26;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-tall {
+            grid-row: span 42;
+        }
+
+        .card-wide {
+            grid-column: span 2;
+            grid-row: span 26;
+        }
+
+        .card-big {
+            grid-column: span 2;
+            grid-row: span 42;
+        }
+
+        figure {
+            margin: 0;
+            flex-grow: 1;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover img {
+            transform: scale(1.15);
+        }
+
+        .card-content {
+            padding: 20px;
+            background: linear-gradient(to top, white 0%, rgba(255,255,255,0.95) 100%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-content h3 {
+            font-size: 1.5em;
+            color: #00ffaa;
+            margin-bottom: 8px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .card-content h3 {
+            color: #eb06a6;
+        }
+
+        .card-content p {
+            color: #ebdb01;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            z-index: 3;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .category-badge {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 15px;
+            }
+
+            .card-wide,
+            .card-big {
+                grid-column: span 1;
+            }
+        }
+    </style>
 </head>
 <body>
+
+    <div class="header">
+        <h1>✨ Galería Masonry</h1>
+         <h1>✨ Andres Castro</h1>
+        <p>Explora nuestra colección visual</p>
+    </div>
 
     <main class="gallery-grid">
         
         <article class="card">
+            <span class="category-badge">🌲 Naturaleza</span>
             <figure>
                 <img src="https://picsum.photos/id/10/400/400" alt="Bosque">
             </figure>
             <div class="card-content">
                 <h3>Naturaleza</h3>
-                <p>Vista del bosque.</p>
+                <p>Vista del bosque lleno de vida y tranquilidad.</p>
             </div>
         </article>
 
         <article class="card card-tall">
+            <span class="category-badge">🏞️ Aventura</span>
             <figure>
                 <img src="https://picsum.photos/id/15/400/600" alt="Cascada">
             </figure>
             <div class="card-content">
                 <h3>Aventura</h3>
-                <p>Explorando cascadas altas.</p>
+                <p>Explorando cascadas altas y senderos escondidos.</p>
             </div>
         </article>
 
         <article class="card card-wide">
+            <span class="category-badge">🌅 Horizonte</span>
             <figure>
                 <img src="https://picsum.photos/id/28/600/400" alt="Paisaje">
             </figure>
             <div class="card-content">
                 <h3>Horizonte</h3>
-                <p>Un paisaje amplio para probar el grid.</p>
+                <p>Un paisaje amplio que se extiende hasta donde alcanza la vista.</p>
             </div>
         </article>
 
         <article class="card">
+            <span class="category-badge">🐱 Mascotas</span>
             <figure>
                 <img src="https://picsum.photos/id/40/400/400" alt="Gato">
             </figure>
             <div class="card-content">
                 <h3>Mascotas</h3>
-                <p>Un gato curioso.</p>
+                <p>Un gato curioso observando el mundo.</p>
             </div>
         </article>
 
         <article class="card card-big">
+            <span class="category-badge">🏙️ Urbanismo</span>
             <figure>
                 <img src="https://picsum.photos/id/56/800/800" alt="Ciudad">
             </figure>
             <div class="card-content">
                 <h3>Urbanismo</h3>
-                <p>La ciudad nunca duerme.</p>
+                <p>La ciudad nunca duerme, siempre en constante movimiento y energía.</p>
             </div>
         </article>
 
         <article class="card card-tall">
+            <span class="category-badge">🏛️ Diseño</span>
             <figure>
                 <img src="https://picsum.photos/id/88/400/600" alt="Arquitectura">
             </figure>
             <div class="card-content">
                 <h3>Diseño</h3>
-                <p>Estructuras complejas.</p>
+                <p>Estructuras complejas que desafían la imaginación.</p>
             </div>
         </article>
 
