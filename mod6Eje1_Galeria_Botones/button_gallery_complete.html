@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Botones | Bootstrap vs Tailwind</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header Hero */
+        .hero-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .level-badge, .time-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .framework-pills {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: white;
+            color: #4a5568;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bootstrap-pill {
+            color: #7952b3;
+        }
+
+        .tailwind-pill {
+            color: #06b6d4;
+        }
+
+        .tailwind-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Navigation */
+        .framework-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 18px 24px;
+            background: white;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+            font-size: 15px;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .nav-tab:hover {
+            background: #f8fafc;
+            color: #334155;
+        }
+
+        .nav-tab.active {
+            color: #7952b3;
+            border-bottom-color: #7952b3;
+            background: #faf8ff;
+        }
+
+        .tailwind-icon-sm {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: #f8fafc;
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+
+        .framework-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .framework-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Intro Card */
+        .intro-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .intro-icon {
+            font-size: 60px;
+            color: #7952b3;
+        }
+
+        .tailwind-icon-large {
+            width: 60px;
+            height: 60px;
+            color: #06b6d4;
+        }
+
+        .intro-text h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+
+        .intro-text p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .intro-text code {
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #7952b3;
+            font-size: 14px;
+        }
+
+        /* Content Section */
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #e2e8f0;
+            line-height: 1;
+        }
+
+        .section-header h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .section-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Demo Card */
+        .demo-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .demo-preview {
+            padding: 40px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+
+        .demo-preview.demo-column {
+            flex-direction: column;
+        }
+
+        .demo-preview.demo-sizes {
+            align-items: center;
+        }
+
+        .demo-code {
+            background: #1e293b;
+            padding: 0;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: #0f172a;
+            border-bottom: 1px solid #334155;
+        }
+
+        .code-lang {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .copy-btn {
+            background: #334155;
+            color: #e2e8f0;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #475569;
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+            color: white;
+        }
+
+        pre {
+            margin: 0;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        code {
+            color: #e2e8f0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Explanation Box */
+        .explanation-box, .tip-box {
+            padding: 20px;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            margin-top: 0;
+        }
+
+        .explanation-box h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #92400e;
+        }
+
+        .explanation-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .explanation-box li {
+            padding: 6px 0;
+            color: #78350f;
+        }
+
+        .explanation-box code {
+            background: #fde68a;
+            color: #92400e;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .tip-box {
+            background: #dbeafe;
+            border-left-color: #3b82f6;
+        }
+
+        .tip-box span {
+            color: #1e40af;
+        }
+
+        .anatomy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .anatomy-item {
+            background: #f0f9ff;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #bae6fd;
+        }
+
+        .anatomy-item code {
+            display: block;
+            color: #0369a1;
+            font-weight: 600;
+            margin-bottom: 4px;
+            background: transparent;
+        }
+
+        .anatomy-item span {
+            font-size: 12px;
+            color: #075985;
+        }
+
+        /* Comparison Section */
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .comparison-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .comparison-header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .comparison-item {
+            padding: 24px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bootstrap-bg {
+            background: linear-gradient(135deg, #f8f4ff 0%, #f0ebff 100%);
+            border: 2px solid #e9d5ff;
+        }
+
+        .tailwind-bg {
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            border: 2px solid #a5f3fc;
+        }
+
+        .framework-label {
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bootstrap-bg .framework-label {
+            color: #7952b3;
+        }
+
+        .tailwind-bg .framework-label {
+            color: #0891b2;
+        }
+
+        .comparison-item code {
+            background: white;
+            color: #64748b;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            width: 100%;
+            word-break: break-all;
+        }
+
+        /* Summary Table */
+        .summary-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .summary-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .summary-table {
+            overflow-x: auto;
+        }
+
+        .summary-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-row.header {
+            background: #f8fafc;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .summary-row div {
+            color: #64748b;
+        }
+
+        .highlight-green {
+            color: #10b981 !important;
+            font-weight: 600;
+        }
+
+        .highlight-orange {
+            color: #f59e0b !important;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #1e293b;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav span {
+            opacity: 0.5;
+        }
+
+        .footer-nav .current {
+            opacity: 1;
+            font-weight: 600;
+            color: #7952b3;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-header {
+                padding: 60px 20px 40px;
+            }
+
+            .intro-card {
+                padding: 24px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-number {
+                font-size: 32px;
+            }
+
+            .demo-preview {
+                padding: 24px;
+            }
+
+            .summary-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .summary-row div:first-child {
+                font-weight: 600;
+                color: #1e293b;
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Hero -->
+    <header class="hero-header">
+        <div class="hero-content">
+            <div class="badge-container">
+                <span class="level-badge">NIVEL BÁSICO</span>
+                <span class="time-badge"><i class="bi bi-clock"></i> 15-20 min</span>
+            </div>
+            <h1>Galería de Botones</h1>
+            <p class="hero-subtitle">Domina los botones en Bootstrap 5 y Tailwind CSS</p>
+            <div class="framework-pills">
+                <span class="pill bootstrap-pill"><i class="bi bi-bootstrap"></i> Bootstrap 5</span>
+                <span class="pill tailwind-pill">
+                    <svg class="tailwind-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/>
+                    </svg>
+                    Tailwind CSS
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="framework-nav">
+        <div class="nav-container">
+            <button class="nav-tab active" data-framework="bootstrap">
+                <i class="bi bi-bootstrap"></i>
+                Bootstrap 5
+            </button>
+            <button class="nav-tab" data-framework="tailwind">
+                <svg class="tailwind-icon-sm" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6,2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/>
+                </svg>
+                Tailwind CSS
+            </button>
+            <button class="nav-tab" data-framework="comparison">
+                <i class="bi bi-arrows-expand"></i>
+                Comparación
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- BOOTSTRAP SECTION -->
+        <section id="bootstrap-section" class="framework-section active">
+            <div class="container-fluid px-4 px-lg-5">
+                
+                <div class="intro-card">
+                    <div class="intro-icon">
+                        <i class="bi bi-bootstrap"></i>
+                    </div>
+                    <div class="intro-text">
+                        <h2>Botones en Bootstrap 5</h2>
+                        <p>Bootstrap proporciona clases predefinidas para crear botones con estilos consistentes. La clase base <code>btn</code> es obligatoria, seguida de una clase de variante de color.</p>
+                    </div>
+                </div>
+
+                <!-- Botones Básicos -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <span class="section-number">01</span>
+                        <div>
+                            <h3>Botones Básicos (Solid)</h3>
+                            <p>Variantes de color con fondo sólido</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-card">
+                        <div class="demo-preview">
+                            <button type="button" class="btn btn-primary">Primary</button>
+                            <button type="button" class="btn btn-secondary">Secondary</button>
+                            <button type="button" class="btn btn-success">Success</button>
+                            <button type="button" class="btn btn-danger">Danger</button>
+                            <button type="button" class="btn btn-warning">Warning</button>
+                            <button type="button" class="btn btn-info">Info</button>
+                            <button type="button" class="btn btn-light">Light</button>
+                            <button type="button" class="btn btn-dark">Dark</button>
+                        </div>
+                        <div class="demo-code">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="bi bi-clipboard"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button class="btn btn-info"&gt;Info&lt;/button&gt;
+&lt;button class="btn btn-light"&gt;Light&lt;/button&gt;
+&lt;button class="btn btn-dark"&gt;Dark&lt;/button&gt;</code></pre>
+                        </div>
+                        <div class="explanation-box">
+                            <h4><i class="bi bi-lightbulb"></i> ¿Cómo funciona?</h4>
+                            <ul>
+                                <li><code>btn</code> → Clase base obligatoria (padding, border-radius, cursor)</li>
+                                <li><code>btn-{color}</code> → Define el color de fondo y texto</li>
+                                <li>Los colores están definidos en las variables CSS de Bootstrap</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones Outline -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <span class="section-number">02</span>
+                        <div>
+                            <h3>Botones Outline (Solo borde)</h3>
+                            <p>Variantes con fondo transparente y borde de color</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-card">
+                        <div class="demo-preview">
+                            <button type="button" class="btn btn-outline-primary">Primary</button>
+                            <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                            <button type="button" class="btn btn-outline-success">Success</button>
+                            <button type="button" class="btn btn-outline-danger">Danger</button>
+                            <button type="button" class="btn btn-outline-warning">Warning</button>
+                            <button type="button" class="btn btn-outline-info">Info</button>
+                        </div>
+                        <div class="demo-code">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="bi bi-clipboard"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;button class="btn btn-outline-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-outline-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn-outline-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-outline-danger"&gt;Danger&lt;/button&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tamaños -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <span class="section-number">03</span>
+                        <div>
+                            <h3>Tamaños de Botones</h3>
+                            <p>Variantes de tamaño para diferentes contextos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-card">
+                        <div class="demo-preview demo-sizes">
+                            <button type="button" class="btn btn-primary btn-lg">Grande (btn-lg)</button>
+                            <button type="button" class="btn btn-primary">Normal</button>
+                            <button type="button" class="btn btn-primary btn-sm">Pequeño (btn-sm)</button>
+                        </div>
+                        <div class="demo-code">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="bi bi-clipboard"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;button class="btn btn-primary btn-lg"&gt;Grande&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Normal&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;Pequeño&lt;/button&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Con Iconos -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <span class="section-number">04</span>
+                        <div>
+                            <h3>Botones con Iconos</h3>
+                            <p>Combinando texto e iconos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-card">
+                        <div class="demo-preview">
+                            
