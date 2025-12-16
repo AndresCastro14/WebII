@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #07d612 0%, #750ddd 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -66,7 +66,7 @@ input[type="number"] {
 
 input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #da13e0;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -80,7 +80,7 @@ input.invalid {
 
 .error-message {
     display: none;
-    color: #f44336;
+    color: #b8180d;
     font-size: 0.85rem;
     margin-top: 0.3rem;
 }
