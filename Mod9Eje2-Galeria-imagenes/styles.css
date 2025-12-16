@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #09e727 0%, #220142 100%);
     min-height: 100vh;
     padding: 2rem;
 }
@@ -53,9 +53,9 @@ body {
 
 .filter-btn {
     padding: 0.8rem 1.5rem;
-    border: 2px solid #667eea;
+    border: 2px solid #f10bd2;
     background: transparent;
-    color: #667eea;
+    color: #8606ee;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
@@ -100,7 +100,7 @@ body {
 }
 
 .stats strong {
-    color: #667eea;
+    color: #05f3e7;
 }
 
 /* GALERÍA GRID */
@@ -159,7 +159,7 @@ body {
 .gallery-category {
     display: inline-block;
     padding: 0.3rem 0.8rem;
-    background: #667eea;
+    background: #aa07db;
     color: white;
     border-radius: 20px;
     font-size: 0.85rem;
