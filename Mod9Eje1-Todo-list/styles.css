@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #19e606 0%, #f105a3 100%);
     min-height: 100vh;
     padding: 2rem;
 }
@@ -50,7 +50,7 @@ header h1 {
 
 #addBtn {
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2ee600 0%, #04eb9e 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -75,8 +75,8 @@ header h1 {
 }
 
 .filter-btn.active {
-    background: #667eea;
-    color: white;
+    background: #b209e6;
+    color: rgb(211, 14, 14);
 }
 
 .count {
