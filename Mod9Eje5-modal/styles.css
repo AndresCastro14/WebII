@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #e66c09 0%, #7300e6 100%);
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -22,7 +22,7 @@ body.modal-open {
 }
 
 .header {
-    background: white;
+    background: rgb(153, 51, 51);
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
@@ -40,7 +40,7 @@ body.modal-open {
 }
 
 .content {
-    background: white;
+    background: rgb(15, 214, 181);
     padding: 2.5rem;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -85,23 +85,23 @@ body.modal-open {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #bd0de0 0%, #a80be6 100%);
 }
 
 .btn-success {
-    background: #4caf50;
+    background: #1fce25;
 }
 
 .btn-info {
-    background: #2196f3;
+    background: #3607e2;
 }
 
 .btn-warning {
-    background: #ff9800;
+    background: #f0c505;
 }
 
 .btn-secondary {
-    background: #6c757d;
+    background: #8705f1;
 }
 
 .btn:hover {
@@ -301,7 +301,7 @@ body.modal-open {
 .modal-form textarea {
     width: 100%;
     padding: 0.8rem;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #470808;
     border-radius: 8px;
     font-size: 1rem;
     font-family: inherit;
