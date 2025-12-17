@@ -3,7 +3,7 @@ const products = [
     {
         id: 1,
         name: 'Laptop Pro',
-        price: 12999,
+        price: 10999,
         description: 'Laptop de alto rendimiento',
         emoji: '💻',
         stock: 5
@@ -11,7 +11,7 @@ const products = [
     {
         id: 2,
         name: 'Smartphone',
-        price: 8999,
+        price: 7999,
         description: 'Teléfono inteligente de última generación',
         emoji: '📱',
         stock: 10
@@ -19,7 +19,7 @@ const products = [
     {
         id: 3,
         name: 'Auriculares',
-        price: 2499,
+        price: 2899,
         description: 'Auriculares inalámbricos con cancelación de ruido',
         emoji: '🎧',
         stock: 15
@@ -27,7 +27,7 @@ const products = [
     {
         id: 4,
         name: 'Tablet',
-        price: 6999,
+        price: 9999,
         description: 'Tablet de 10 pulgadas',
         emoji: '📱',
         stock: 8
@@ -35,7 +35,7 @@ const products = [
     {
         id: 5,
         name: 'Smartwatch',
-        price: 4999,
+        price: 6999,
         description: 'Reloj inteligente con GPS',
         emoji: '⌚',
         stock: 12
@@ -43,7 +43,7 @@ const products = [
     {
         id: 6,
         name: 'Cámara',
-        price: 15999,
+        price: 16999,
         description: 'Cámara profesional 4K',
         emoji: '📷',
         stock: 3
