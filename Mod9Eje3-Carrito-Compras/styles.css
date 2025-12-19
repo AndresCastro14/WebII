@@ -6,7 +6,11 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+<<<<<<< HEAD
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+=======
+    background: linear-gradient(135deg, #e68405 0%, #eb06a6 100%);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     min-height: 100vh;
     padding: 1rem;
 }
@@ -18,7 +22,11 @@ body {
 
 /* Header */
 .header {
+<<<<<<< HEAD
     background: white;
+=======
+    background: rgb(129, 240, 1);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     padding: 1.5rem 2rem;
     border-radius: 15px;
     margin-bottom: 2rem;
@@ -96,7 +104,11 @@ body {
     width: 100%;
     height: 200px;
     object-fit: cover;
+<<<<<<< HEAD
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+=======
+    background: linear-gradient(135deg, #0446fa 0%, #f806a7 100%);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,7 +152,11 @@ body {
 .btn-add-cart {
     width: 100%;
     padding: 0.8rem;
+<<<<<<< HEAD
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+=======
+    background: linear-gradient(135deg, #eca304 0%, #764ba2 100%);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     color: white;
     border: none;
     border-radius: 8px;

@@ -1,19 +1,19 @@
 :root {
     --bg-color: #ffffff;
-    --text-color: #333333;
-    --card-bg: #f8f9fa;
-    --border-color: #e0e0e0;
+    --text-color: #0e0d0d;
+    --card-bg: #1064b8;
+    --border-color: #cc2222;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --accent: #667eea;
+    --accent: #0b2eca;
 }
 
 body.dark-mode {
-    --bg-color: #1a1a2e;
-    --text-color: #e0e0e0;
-    --card-bg: #16213e;
-    --border-color: #0f3460;
+    --bg-color: #27273b;
+    --text-color: #ace709;
+    --card-bg: #21e23b;
+    --border-color: #18eb3b;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    --accent: #764ba2;
+    --accent: #7911e0;
 }
 
 * {

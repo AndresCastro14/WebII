@@ -6,7 +6,11 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+<<<<<<< HEAD
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+=======
+    background: linear-gradient(135deg, #09eb09 0%, #04dfcc27 100%);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -55,7 +59,11 @@ h1 {
 
 #itemInput:focus {
     outline: none;
+<<<<<<< HEAD
     border-color: #667eea;
+=======
+    border-color: #e7bf0a;
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
 }
 
 .btn {
@@ -69,7 +77,11 @@ h1 {
 }
 
 .btn-add {
+<<<<<<< HEAD
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+=======
+    background: linear-gradient(135deg, #eb06cc 0%, #da1380 100%);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     color: white;
 }
 
@@ -203,7 +215,11 @@ h1 {
 .list-item.editing .edit-input {
     display: block;
     padding: 0.5rem;
+<<<<<<< HEAD
     border: 2px solid #667eea;
+=======
+    border: 2px solid #00ff55;
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     border-radius: 8px;
     font-size: 1rem;
 }

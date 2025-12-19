@@ -10,15 +10,15 @@
 
 :root {
     /* Colores */
-    --color-positive: #ec0000;
-    --color-negative: #1900ff;
+    --color-positive: #12f076ff;
+    --color-negative: #f102b6;
     --color-neutral: #2d3748;
-    --color-bg-positive: #d4edda;
-    --color-bg-negative: #f8d7da;
+    --color-bg-positive: #08ec3d;
+    --color-bg-negative: #c41c2a;
     --color-bg-neutral: #f8f9fa;
     
     /* Botones */
-    --btn-success: #28a745;
+    --btn-success: #d116c8;
     --btn-danger: #dc3545;
     --btn-secondary: #6c757d;
     

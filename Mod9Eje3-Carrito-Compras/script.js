@@ -3,7 +3,11 @@ const products = [
     {
         id: 1,
         name: 'Laptop Pro',
+<<<<<<< HEAD
         price: 12999,
+=======
+        price: 10999,
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
         description: 'Laptop de alto rendimiento',
         emoji: '💻',
         stock: 5
@@ -11,7 +15,11 @@ const products = [
     {
         id: 2,
         name: 'Smartphone',
+<<<<<<< HEAD
         price: 8999,
+=======
+        price: 7999,
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
         description: 'Teléfono inteligente de última generación',
         emoji: '📱',
         stock: 10
@@ -19,7 +27,11 @@ const products = [
     {
         id: 3,
         name: 'Auriculares',
+<<<<<<< HEAD
         price: 2499,
+=======
+        price: 2899,
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
         description: 'Auriculares inalámbricos con cancelación de ruido',
         emoji: '🎧',
         stock: 15
@@ -27,7 +39,11 @@ const products = [
     {
         id: 4,
         name: 'Tablet',
+<<<<<<< HEAD
         price: 6999,
+=======
+        price: 9999,
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
         description: 'Tablet de 10 pulgadas',
         emoji: '📱',
         stock: 8
@@ -35,7 +51,11 @@ const products = [
     {
         id: 5,
         name: 'Smartwatch',
+<<<<<<< HEAD
         price: 4999,
+=======
+        price: 6999,
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
         description: 'Reloj inteligente con GPS',
         emoji: '⌚',
         stock: 12
@@ -43,7 +63,11 @@ const products = [
     {
         id: 6,
         name: 'Cámara',
+<<<<<<< HEAD
         price: 15999,
+=======
+        price: 16999,
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
         description: 'Cámara profesional 4K',
         emoji: '📷',
         stock: 3

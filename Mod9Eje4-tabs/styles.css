@@ -6,7 +6,11 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+<<<<<<< HEAD
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+=======
+    background: linear-gradient(135deg, #ca690e 0%, #ff04ea 100%);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     min-height: 100vh;
     padding: 2rem;
 }
@@ -17,14 +21,22 @@ body {
 }
 
 .tabs-container {
+<<<<<<< HEAD
     background: white;
+=======
+    background: rgb(148, 57, 57);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
+<<<<<<< HEAD
     color: #333;
+=======
+    color: #0c0808;
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     text-align: center;
     margin-bottom: 0.5rem;
 }
@@ -40,7 +52,11 @@ h1 {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 2rem;
+<<<<<<< HEAD
     border-bottom: 2px solid #e0e0e0;
+=======
+    border-bottom: 2px solid #db0e74;
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     overflow-x: auto;
 }
 
@@ -68,8 +84,13 @@ h1 {
 }
 
 .tab-btn.active {
+<<<<<<< HEAD
     color: #667eea;
     border-bottom-color: #667eea;
+=======
+    color: #0bb8e4;
+    border-bottom-color: #5e07af;
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     background: rgba(102, 126, 234, 0.1);
 }
 
@@ -161,14 +182,22 @@ h1 {
     margin-bottom: 0.8rem;
     background: #f8f9fa;
     border-radius: 8px;
+<<<<<<< HEAD
     border-left: 4px solid #667eea;
+=======
+    border-left: 4px solid #0bf10b;
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     font-size: 1.05rem;
     transition: transform 0.3s;
 }
 
 .service-list li:hover {
     transform: translateX(5px);
+<<<<<<< HEAD
     background: #e9ecef;
+=======
+    background: #91db07;
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
 }
 
 /* Stats Grid */
@@ -180,8 +209,13 @@ h1 {
 }
 
 .stat-card {
+<<<<<<< HEAD
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+=======
+    background: linear-gradient(135deg, #06eb5e 0%, #df03cc 100%);
+    color: rgb(189, 27, 27);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
@@ -236,8 +270,13 @@ h1 {
 .cta-btn {
     width: 100%;
     padding: 1rem 2rem;
+<<<<<<< HEAD
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+=======
+    background: linear-gradient(135deg, #e2096e 0%, #0250e0 100%);
+    color: rgb(141, 5, 5);
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     border: none;
     border-radius: 10px;
     font-size: 1.1rem;
@@ -255,7 +294,11 @@ h1 {
     text-align: center;
     margin-top: 2rem;
     padding: 1rem;
+<<<<<<< HEAD
     background: #f8f9fa;
+=======
+    background: #0dd9e0;
+>>>>>>> 4577ccb44321f290efc58fad202a72ee1e3ade98
     border-radius: 8px;
     color: #666;
     font-size: 0.9rem;
