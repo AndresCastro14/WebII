@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1eff00 0%, #fd8801 100%);
     min-height: 100vh;
     padding: 2rem 1rem;
 }
@@ -57,7 +57,7 @@ h1 {
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #ebd407;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -98,7 +98,7 @@ h1 {
 .btn-calculate {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #6f01ec 0%, #fa06a9 100%);
     color: white;
     border: none;
     border-radius: 10px;
