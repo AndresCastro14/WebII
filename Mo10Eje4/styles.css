@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f39f02 0%, #fa0101 100%);
     min-height: 100vh;
     padding: 2rem 1rem;
 }
@@ -54,7 +54,7 @@ h1 {
 
 .btn-copy {
     padding: 1rem 1.5rem;
-    background: #667eea;
+    background: #10e709;
     color: white;
     border: none;
     border-radius: 10px;
@@ -64,7 +64,7 @@ h1 {
 }
 
 .btn-copy:hover {
-    background: #5568d3;
+    background: #4beb00;
     transform: scale(1.05);
 }
 
@@ -103,7 +103,7 @@ h1 {
 }
 
 #lengthValue {
-    color: #667eea;
+    color: #e20bc6;
     font-size: 1.2rem;
 }
 
@@ -121,7 +121,7 @@ input[type="range"]::-webkit-slider-thumb {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #667eea;
+    background: #d4eb07;
     cursor: pointer;
 }
 
@@ -129,7 +129,7 @@ input[type="range"]::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #667eea;
+    background: #e00938;
     cursor: pointer;
     border: none;
 }
@@ -171,7 +171,7 @@ input[type="range"]::-moz-range-thumb {
 .btn-generate {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #df06b096 0%, #6f0cd1 100%);
     color: white;
     border: none;
     border-radius: 10px;
