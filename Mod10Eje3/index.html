@@ -4,13 +4,370 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador Avanzado con Filtros Reales</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveBackground 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .filters {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 28px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .filters h2 {
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .filter-group {
+            margin-bottom: 24px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+            border: 3px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+            border: 3px solid #667eea;
+        }
+
+        #priceLabel {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .radio-options label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .radio-options label:hover {
+            background: #e9ecef;
+            transform: translateX(4px);
+        }
+
+        .radio-options input[type="radio"]:checked + label,
+        .radio-options label:has(input:checked) {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
+        }
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            color: #495057;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #dee2e6 0%, #ced4da 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .results-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        #resultsCount {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+            min-height: 200px;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h4 {
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .card strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .card small {
+            background: #f8f9fa;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .pagination {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding-top: 24px;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .btn-page {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-page:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-page:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        #pageInfo {
+            font-weight: 600;
+            color: #495057;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .grid > p {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            padding: 40px;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                position: static;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+
+            .filters, .content {
+                padding: 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <div class="container">
         <aside class="filters">
-            <h2>Filtros</h2>
+            <h2>🔍 Filtros</h2>
             <form id="filterForm">
                 
                 <div class="filter-group">
@@ -22,9 +379,9 @@
                     <label for="category">Categoría:</label>
                     <select name="category" id="category">
                         <option value="">Todas las categorías</option>
-                        <option value="electronics">Electrónica</option>
-                        <option value="clothing">Ropa y Accesorios</option>
-                        <option value="home">Hogar y Jardín</option>
+                        <option value="electronics">📱 Electrónica</option>
+                        <option value="clothing">👕 Ropa y Accesorios</option>
+                        <option value="home">🏠 Hogar y Jardín</option>
                     </select>
                 </div>
 
@@ -36,13 +393,13 @@
                 <div class="filter-group">
                     <label>Calificación mínima:</label>
                     <div class="radio-options">
-                        <label><input type="radio" name="rating" value="4"> 4+ estrellas</label>
-                        <label><input type="radio" name="rating" value="3"> 3+ estrellas</label>
+                        <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐ 4+ estrellas</label>
+                        <label><input type="radio" name="rating" value="3"> ⭐⭐⭐ 3+ estrellas</label>
                         <label><input type="radio" name="rating" value="0" checked> Todas</label>
                     </div>
                 </div>
 
-                <button type="button" id="clearBtn" class="btn-secondary">Limpiar Filtros</button>
+                <button type="button" id="clearBtn" class="btn-secondary">🗑️ Limpiar Filtros</button>
             </form>
         </aside>
 
@@ -54,13 +411,177 @@
             <div id="resultsGrid" class="grid"></div>
 
             <footer class="pagination">
-                <button id="prevBtn" class="btn-page">Anterior</button>
+                <button id="prevBtn" class="btn-page">← Anterior</button>
                 <span id="pageInfo">Página 1 de 1</span>
-                <button id="nextBtn" class="btn-page">Siguiente</button>
+                <button id="nextBtn" class="btn-page">Siguiente →</button>
             </footer>
         </main>
     </div>
 
-    <script src="javascript.js"></script>
+    <script>
+        /**
+         * 1. BASE DE DATOS FICTICIA
+         */
+        const products = [
+            { id: 1, name: "MacBook Air M2", category: "electronics", price: 999, rating: 5 },
+            { id: 2, name: "Sudadera Oversize", category: "clothing", price: 45, rating: 4 },
+            { id: 3, name: "Cafetera Espresso", category: "home", price: 120, rating: 4 },
+            { id: 4, name: "Teclado Mecánico", category: "electronics", price: 85, rating: 5 },
+            { id: 5, name: "Pantalón Denim", category: "clothing", price: 60, rating: 3 },
+            { id: 6, name: "Lámpara de Pie", category: "home", price: 35, rating: 2 },
+            { id: 7, name: "iPhone 15", category: "electronics", price: 800, rating: 5 },
+            { id: 8, name: "Zapatillas Running", category: "clothing", price: 110, rating: 4 },
+            { id: 9, name: "Set de Cuchillos", category: "home", price: 75, rating: 3 },
+            { id: 10, name: "Monitor 4K", category: "electronics", price: 400, rating: 4 }
+        ];
+
+        const ITEMS_PER_PAGE = 3;
+
+        const form = document.getElementById('filterForm');
+        const resultsGrid = document.getElementById('resultsGrid');
+        const resultsCount = document.getElementById('resultsCount');
+        const pageInfo = document.getElementById('pageInfo');
+        const priceLabel = document.getElementById('priceLabel');
+
+        /**
+         * 2. FUNCIÓN DEBOUNCE
+         */
+        function debounce(func, delay = 400) {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        /**
+         * 3. ACTUALIZAR URL Y ESTADO
+         */
+        function syncFiltersToURL() {
+            const formData = new FormData(form);
+            const params = new URLSearchParams();
+
+            formData.forEach((value, key) => {
+                if (value && value !== "0") {
+                    params.set(key, value);
+                }
+            });
+
+            params.set('page', '1');
+
+            const newRelativePathQuery = window.location.pathname + '?' + params.toString();
+            window.history.pushState(null, '', newRelativePathQuery);
+
+            render();
+        }
+
+        /**
+         * 4. FUNCIÓN PRINCIPAL DE RENDERIZADO
+         */
+        function render() {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q')?.toLowerCase() || "";
+            const category = params.get('category') || "";
+            const maxPrice = parseInt(params.get('maxPrice')) || 1000;
+            const rating = parseInt(params.get('rating')) || 0;
+            let page = parseInt(params.get('page')) || 1;
+
+            const filtered = products.filter(item => {
+                const matchesName = item.name.toLowerCase().includes(q);
+                const matchesCategory = category === "" || item.category === category;
+                const matchesPrice = item.price <= maxPrice;
+                const matchesRating = item.rating >= rating;
+                return matchesName && matchesCategory && matchesPrice && matchesRating;
+            });
+
+            const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
+            if (page > totalPages) page = totalPages;
+            
+            const start = (page - 1) * ITEMS_PER_PAGE;
+            const end = start + ITEMS_PER_PAGE;
+            const itemsToShow = filtered.slice(start, end);
+
+            const categoryEmojis = {
+                electronics: '📱',
+                clothing: '👕',
+                home: '🏠'
+            };
+
+            resultsGrid.innerHTML = itemsToShow.length > 0 
+                ? itemsToShow.map(p => `
+                    <article class="card">
+                        <h4>${categoryEmojis[p.category] || ''} ${p.name}</h4>
+                        <p><strong>Precio:</strong> $${p.price}</p>
+                        <p><small>Categoría: ${p.category}</small></p>
+                        <p>${'⭐'.repeat(p.rating)} (${p.rating}/5)</p>
+                    </article>
+                `).join('')
+                : `<p>😢 No se encontraron productos con esos filtros.</p>`;
+
+            resultsCount.innerText = `📦 ${filtered.length} productos encontrados`;
+            pageInfo.innerText = `Página ${page} de ${totalPages}`;
+            
+            document.getElementById('prevBtn').disabled = (page <= 1);
+            document.getElementById('nextBtn').disabled = (page >= totalPages);
+
+            priceLabel.innerText = `$${maxPrice}`;
+        }
+
+        /**
+         * 5. GESTIÓN DE EVENTOS
+         */
+        const handleSearchInput = debounce(() => syncFiltersToURL());
+        document.getElementById('search').addEventListener('input', handleSearchInput);
+
+        // Actualizar label del precio en tiempo real
+        document.getElementById('maxPrice').addEventListener('input', (e) => {
+            priceLabel.innerText = `$${e.target.value}`;
+        });
+
+        form.addEventListener('change', (e) => {
+            if (e.target.id !== 'search') {
+                syncFiltersToURL();
+            }
+        });
+
+        function changePage(offset) {
+            const params = new URLSearchParams(window.location.search);
+            let currentPage = parseInt(params.get('page')) || 1;
+            params.set('page', currentPage + offset);
+            
+            window.history.pushState(null, '', `?${params.toString()}`);
+            render();
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => changePage(-1));
+        document.getElementById('nextBtn').addEventListener('click', () => changePage(1));
+
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            form.reset();
+            window.history.pushState(null, '', window.location.pathname);
+            render();
+        });
+
+        /**
+         * 6. INICIALIZACIÓN
+         */
+        window.addEventListener('popstate', render);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            params.forEach((value, key) => {
+                const input = form.elements[key];
+                if (input) {
+                    if (input.type === 'radio') {
+                        const radio = form.querySelector(`input[name="${key}"][value="${value}"]`);
+                        if (radio) radio.checked = true;
+                    } else {
+                        input.value = value;
+                    }
+                }
+            });
+            render();
+        });
+    </script>
 </body>
 </html>
