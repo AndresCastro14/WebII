@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #e666ea 0%, #4ba25e 100%);
     min-height: 100vh;
     padding: 2rem;
 }
@@ -71,7 +71,7 @@ h1 {
 
 .progress-step.active .step-number,
 .progress-step.completed .step-number {
-    background: #667eea;
+    background: #20e706;
     color: white;
 }
 
@@ -145,7 +145,7 @@ input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #ac0feb;
 }
 
 input.valid {
@@ -189,7 +189,7 @@ input.invalid {
 }
 
 .summary-section h3 {
-    color: #667eea;
+    color: #000d49;
     margin-bottom: 1rem;
 }
 
@@ -226,7 +226,7 @@ input.invalid {
 }
 
 .btn-primary {
-    background: #667eea;
+    background: #9006ec;
     color: white;
 }
 
