@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ff4a03 0%, #bb07f1 100%);
     min-height: 100vh;
     padding: 2rem;
 }
@@ -38,7 +38,7 @@ h1 {
 .btn {
     padding: 0.8rem 1.5rem;
     background: white;
-    color: #667eea;
+    color: #cc0bf3;
     border: none;
     border-radius: 8px;
     font-weight: 600;
@@ -80,7 +80,7 @@ h1 {
 
 .dropzone.drag-over {
     background: #e3f2fd;
-    border-color: #667eea;
+    border-color: #06fcd3;
     box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
 }
 
