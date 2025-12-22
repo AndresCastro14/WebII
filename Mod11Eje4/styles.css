@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f50b17 0%, #ac09ec 100%);
     min-height: 100vh;
     padding: 2rem;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 h1 {
-    color: white;
+    color: rgb(25, 22, 247);
     text-align: center;
     margin-bottom: 0.5rem;
 }
@@ -39,7 +39,7 @@ h1 {
 }
 
 .upload-area.drag-over {
-    border-color: #667eea;
+    border-color: #0bf10b;
     background: #f0f4ff;
     transform: scale(1.02);
 }
@@ -56,7 +56,7 @@ h1 {
 
 .btn-upload {
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #8100fa 0%, #f8a203 100%);
     color: white;
     border: none;
     border-radius: 10px;
