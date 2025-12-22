@@ -21,14 +21,14 @@ body {
 .section-title {
     display: block;
     font-size: 0.7rem;
-    color: #888;
+    color: #35f306;
     text-transform: uppercase;
     margin-bottom: 10px;
     letter-spacing: 1px;
 }
 
 .control-group {
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #fa3b01;
     padding-bottom: 15px;
 }
 
@@ -36,7 +36,7 @@ button {
     width: 100%;
     padding: 10px;
     margin-bottom: 5px;
-    background: #3d3d3d;
+    background: #fa0909;
     border: 1px solid #555;
     color: white;
     border-radius: 4px;
@@ -45,7 +45,7 @@ button {
 }
 
 button:hover { background: #4d4d4d; }
-button.active { background: #1a73e8; border-color: #1a73e8; }
+button.active { background: #b6242c; border-color: #1a73e8; }
 
 .tool-grid {
     display: grid;
