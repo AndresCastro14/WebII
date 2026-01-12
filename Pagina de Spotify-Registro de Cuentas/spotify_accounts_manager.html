@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Cuentas Spotify</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1DB954 0%, #191414 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .app {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .form-section h2 {
+            color: #191414;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1DB954;
+        }
+
+        .btn-add {
+            grid-column: 1 / -1;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #1DB954 0%, #1ed760 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-add:hover {
+            transform: translateY(-2px);
+        }
+
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-btn {
+            flex: 1;
+            padding: 0.8rem;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn.active {
+            background: #1DB954;
+            color: white;
+        }
+
+        .count {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-left: 0.3rem;
+        }
+
+        .accounts-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .account-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+            border-left: 4px solid #1DB954;
+        }
+
+        .account-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .account-item.completed {
+            opacity: 0.6;
+            border-left-color: #28a745;
+        }
+
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .account-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #191414;
+        }
+
+        .account-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .account-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.2rem;
+        }
+
+        .detail-value {
+            font-size: 0.95rem;
+            color: #333;
+            word-break: break-all;
+        }
+
+        .account-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .btn-delete {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-delete:hover {
+            background: #ff3838;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 1rem;
+        }
+
+        .btn-clear {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .stats {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid,
+            .account-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 Gestor de Cuentas Spotify</h1>
+            <p>Administra tus cuentas de Spotify de manera organizada</p>
+        </header>
+
+        <div class="app">
+            <div class="form-section">
+                <h2>➕ Nueva Cuenta</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nameInput">Nombre</label>
+                        <input type="text" id="nameInput" placeholder="Nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="emailInput">Correo Electrónico</label>
+                        <input type="email" id="emailInput" placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordInput">Contraseña</label>
+                        <input type="password" id="passwordInput" placeholder="Contraseña segura">
+                    </div>
+                    <div class="form-group">
+                        <label for="codeInput">Código</label>
+                        <input type="text" id="codeInput" placeholder="Código de activación">
+                    </div>
+                    <button class="btn-add" id="addBtn">Agregar Cuenta</button>
+                </div>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Todas <span class="count" id="allCount">0</span></button>
+                <button class="filter-btn" data-filter="active">Pendientes <span class="count" id="activeCount">0</span></button>
+                <button class="filter-btn" data-filter="completed">Completadas <span class="count" id="completedCount">0</span></button>
+            </div>
+
+            <ul id="accountsList" class="accounts-list"></ul>
+
+            <div class="actions">
+                <button id="clearCompleted" class="btn-clear">Limpiar Completadas</button>
+                <span class="stats" id="itemsLeft">0 cuentas pendientes</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado de la aplicación
+        let accounts = [];
+        let currentFilter = 'all';
+
+        // Elementos del DOM
+        const nameInput = document.getElementById('nameInput');
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const codeInput = document.getElementById('codeInput');
+        const addBtn = document.getElementById('addBtn');
+        const accountsList = document.getElementById('accountsList');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const clearCompletedBtn = document.getElementById('clearCompleted');
+
+        // Funciones principales
+        function addAccount() {
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const code = codeInput.value.trim();
+            
+            if (name === '' || email === '' || password === '' || code === '') {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+            
+            const account = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                password: password,
+                code: code,
+                completed: false,
+                createdAt: new Date().toLocaleDateString()
+            };
+            
+            accounts.push(account);
+            
+            // Limpiar formulario
+            nameInput.value = '';
+            emailInput.value = '';
+            passwordInput.value = '';
+            codeInput.value = '';
+            
+            renderAccounts();
+        }
+
+        function deleteAccount(id) {
+            accounts = accounts.filter(account => account.id !== id);
+            renderAccounts();
+        }
+
+        function toggleAccount(id) {
+            const account = accounts.find(a => a.id === id);
+            if (account) {
+                account.completed = !account.completed;
+                renderAccounts();
+            }
+        }
+
+        function clearCompleted() {
+            accounts = accounts.filter(account => !account.completed);
+            renderAccounts();
+        }
+
+        function renderAccounts() {
+            // Filtrar cuentas según el filtro actual
+            let filteredAccounts = accounts;
+            if (currentFilter === 'active') {
+                filteredAccounts = accounts.filter(a => !a.completed);
+            } else if (currentFilter === 'completed') {
+                filteredAccounts = accounts.filter(a => a.completed);
+            }
+            
+            // Limpiar lista
+            accountsList.innerHTML = '';
+            
+            if (filteredAccounts.length === 0) {
+                accountsList.innerHTML = '<div class="empty-state">No hay cuentas para mostrar</div>';
+            } else {
+                // Renderizar cada cuenta
+                filteredAccounts.forEach(account => {
+                    const li = document.createElement('li');
+                    li.className = `account-item ${account.completed ? 'completed' : ''}`;
+                    
+                    li.innerHTML = `
+                        <div class="account-header">
+                            <div class="account-name">${account.name}</div>
+                            <div class="account-status">
+                                <input type="checkbox" class="status-checkbox" ${account.completed ? 'checked' : ''}>
+                                <span>${account.completed ? '✓ Completada' : 'Pendiente'}</span>
+                            </div>
+                        </div>
+                        <div class="account-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Correo</span>
+                                <span class="detail-value">${account.email}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Contraseña</span>
+                                <span class="detail-value">${account.password}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Código</span>
+                                <span class="detail-value">${account.code}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Fecha de Creación</span>
+                                <span class="detail-value">${account.createdAt}</span>
+                            </div>
+                        </div>
+                        <div class="account-actions">
+                            <button class="btn-delete">Eliminar</button>
+                        </div>
+                    `;
+                    
+                    // Event listeners
+                    const checkbox = li.querySelector('.status-checkbox');
+                    checkbox.addEventListener('change', () => toggleAccount(account.id));
+                    
+                    const deleteBtn = li.querySelector('.btn-delete');
+                    deleteBtn.addEventListener('click', () => deleteAccount(account.id));
+                    
+                    accountsList.appendChild(li);
+                });
+            }
+            
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const activeCount = accounts.filter(a => !a.completed).length;
+            const completedCount = accounts.filter(a => a.completed).length;
+            
+            document.getElementById('allCount').textContent = accounts.length;
+            document.getElementById('activeCount').textContent = activeCount;
+            document.getElementById('completedCount').textContent = completedCount;
+            document.getElementById('itemsLeft').textContent = `${activeCount} cuentas pendientes`;
+        }
+
+        // Event listeners
+        addBtn.addEventListener('click', addAccount);
+        
+        // Permitir agregar con Enter en cualquier campo
+        [nameInput, emailInput, passwordInput, codeInput].forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') addAccount();
+            });
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderAccounts();
+            });
+        });
+
+        clearCompletedBtn.addEventListener('click', clearCompleted);
+
+        // Inicializar
+        renderAccounts();
+    </script>
+</body>
+</html>
