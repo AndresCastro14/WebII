@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f04c00 0%, #ee03cf 100%);
     min-height: 100vh;
     padding: 2rem;
 }
@@ -47,7 +47,7 @@ header h1 {
 }
 
 button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #08e71a 0%, #a2754b 100%);
     color: white;
     border: none;
     padding: 0.8rem 1.5rem;
@@ -124,7 +124,7 @@ input[type="text"] {
 }
 
 .draggable {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d7e607 0%, #f10486 100%);
     color: white;
     padding: 1rem;
     margin-bottom: 0.5rem;
